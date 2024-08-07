@@ -27,7 +27,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AnnotatedRegion(
         value: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.dark,
         ),
         child: Container(
             height: height,
