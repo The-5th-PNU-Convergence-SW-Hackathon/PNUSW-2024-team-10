@@ -89,10 +89,6 @@ class _NavigationItemWidgetState extends State<_NavigationItemWidget>
       upperBound: 1.0,
       duration: const Duration(milliseconds: 100),
     );
-
-    _controller.addListener(() {
-      setState(() {});
-    });
   }
 
   @override

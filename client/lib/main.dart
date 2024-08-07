@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
-import 'package:heron_app/constants/theme/colors.dart';
-import 'package:heron_app/constants/theme/typography.dart';
 import 'package:heron_app/screens/course.dart';
 import 'package:heron_app/screens/info.dart';
 import 'package:heron_app/screens/map.dart';
@@ -24,7 +22,7 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return HeronApp(
+    return HeronTheme(
         home: Scaffold(
             bottomNavigationBar: HeronNavigation(
                 currentIndex: index,
@@ -35,10 +33,13 @@ class _MainAppState extends State<MainApp> {
                   HeronNavigationItem(
                       label: "Info", icon: LucideIcons.book_open_text),
                 ]),
-            body: [
-              const MapScreen(),
-              const CourseScreen(),
-              const InfoScreen()
-            ][index]));
+            body: IndexedStack(
+              index: index,
+              children: const <Widget>[
+                MapScreen(),
+                CourseScreen(),
+                InfoScreen()
+              ],
+            )));
   }
 }

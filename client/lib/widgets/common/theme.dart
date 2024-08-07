@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:heron_app/constants/theme/colors.dart';
 import 'package:heron_app/constants/theme/typography.dart';
 
-class HeronApp extends StatelessWidget {
+class HeronTheme extends StatelessWidget {
   final Widget home;
 
-  const HeronApp({super.key, required this.home});
+  const HeronTheme({super.key, required this.home});
 
   @override
   Widget build(BuildContext context) {
