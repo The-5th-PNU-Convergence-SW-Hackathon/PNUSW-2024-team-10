@@ -11,27 +11,8 @@
 		60C582DA2C6C4EB6008A5561 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 60C582D92C6C4EB6008A5561 /* SwiftUIIntrospect */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		606AF27F2C6B2DF000EB653F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606AF2642C6B2DEE00EB653F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 606AF26B2C6B2DEE00EB653F;
-			remoteInfo = Heron;
-		};
-		606AF2892C6B2DF000EB653F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606AF2642C6B2DEE00EB653F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 606AF26B2C6B2DEE00EB653F;
-			remoteInfo = Heron;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		606AF26C2C6B2DEE00EB653F /* Heron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heron.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		606AF27E2C6B2DF000EB653F /* HeronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		606AF2882C6B2DF000EB653F /* HeronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -60,8 +41,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		606AF2812C6B2DF000EB653F /* HeronTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = HeronTests; sourceTree = "<group>"; };
-		606AF28B2C6B2DF000EB653F /* HeronUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = HeronUITests; sourceTree = "<group>"; };
 		606AF2C02C6B384F00EB653F /* Heron */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (606AF2C32C6B384F00EB653F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Heron; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -75,20 +54,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606AF27B2C6B2DF000EB653F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606AF2852C6B2DF000EB653F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -96,8 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				606AF2C02C6B384F00EB653F /* Heron */,
-				606AF2812C6B2DF000EB653F /* HeronTests */,
-				606AF28B2C6B2DF000EB653F /* HeronUITests */,
 				606AF26D2C6B2DEE00EB653F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,8 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				606AF26C2C6B2DEE00EB653F /* Heron.app */,
-				606AF27E2C6B2DF000EB653F /* HeronTests.xctest */,
-				606AF2882C6B2DF000EB653F /* HeronUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,52 +97,6 @@
 			productReference = 606AF26C2C6B2DEE00EB653F /* Heron.app */;
 			productType = "com.apple.product-type.application";
 		};
-		606AF27D2C6B2DF000EB653F /* HeronTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 606AF2952C6B2DF000EB653F /* Build configuration list for PBXNativeTarget "HeronTests" */;
-			buildPhases = (
-				606AF27A2C6B2DF000EB653F /* Sources */,
-				606AF27B2C6B2DF000EB653F /* Frameworks */,
-				606AF27C2C6B2DF000EB653F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				606AF2802C6B2DF000EB653F /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				606AF2812C6B2DF000EB653F /* HeronTests */,
-			);
-			name = HeronTests;
-			packageProductDependencies = (
-			);
-			productName = HeronTests;
-			productReference = 606AF27E2C6B2DF000EB653F /* HeronTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		606AF2872C6B2DF000EB653F /* HeronUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 606AF2982C6B2DF000EB653F /* Build configuration list for PBXNativeTarget "HeronUITests" */;
-			buildPhases = (
-				606AF2842C6B2DF000EB653F /* Sources */,
-				606AF2852C6B2DF000EB653F /* Frameworks */,
-				606AF2862C6B2DF000EB653F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				606AF28A2C6B2DF000EB653F /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				606AF28B2C6B2DF000EB653F /* HeronUITests */,
-			);
-			name = HeronUITests;
-			packageProductDependencies = (
-			);
-			productName = HeronUITests;
-			productReference = 606AF2882C6B2DF000EB653F /* HeronUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -194,14 +109,6 @@
 				TargetAttributes = {
 					606AF26B2C6B2DEE00EB653F = {
 						CreatedOnToolsVersion = 16.0;
-					};
-					606AF27D2C6B2DF000EB653F = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 606AF26B2C6B2DEE00EB653F;
-					};
-					606AF2872C6B2DF000EB653F = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 606AF26B2C6B2DEE00EB653F;
 					};
 				};
 			};
@@ -223,28 +130,12 @@
 			projectRoot = "";
 			targets = (
 				606AF26B2C6B2DEE00EB653F /* Heron */,
-				606AF27D2C6B2DF000EB653F /* HeronTests */,
-				606AF2872C6B2DF000EB653F /* HeronUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		606AF26A2C6B2DEE00EB653F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606AF27C2C6B2DF000EB653F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606AF2862C6B2DF000EB653F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,34 +152,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606AF27A2C6B2DF000EB653F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		606AF2842C6B2DF000EB653F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		606AF2802C6B2DF000EB653F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 606AF26B2C6B2DEE00EB653F /* Heron */;
-			targetProxy = 606AF27F2C6B2DF000EB653F /* PBXContainerItemProxy */;
-		};
-		606AF28A2C6B2DF000EB653F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 606AF26B2C6B2DEE00EB653F /* Heron */;
-			targetProxy = 606AF2892C6B2DF000EB653F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		606AF2902C6B2DF000EB653F /* Debug */ = {
@@ -479,80 +343,6 @@
 			};
 			name = Release;
 		};
-		606AF2962C6B2DF000EB653F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9C733G7JPX;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.insd.HeronTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heron.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Heron";
-			};
-			name = Debug;
-		};
-		606AF2972C6B2DF000EB653F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9C733G7JPX;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.insd.HeronTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heron.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Heron";
-			};
-			name = Release;
-		};
-		606AF2992C6B2DF000EB653F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9C733G7JPX;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.insd.HeronUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Heron;
-			};
-			name = Debug;
-		};
-		606AF29A2C6B2DF000EB653F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9C733G7JPX;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.insd.HeronUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Heron;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -570,24 +360,6 @@
 			buildConfigurations = (
 				606AF2932C6B2DF000EB653F /* Debug */,
 				606AF2942C6B2DF000EB653F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		606AF2952C6B2DF000EB653F /* Build configuration list for PBXNativeTarget "HeronTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				606AF2962C6B2DF000EB653F /* Debug */,
-				606AF2972C6B2DF000EB653F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		606AF2982C6B2DF000EB653F /* Build configuration list for PBXNativeTarget "HeronUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				606AF2992C6B2DF000EB653F /* Debug */,
-				606AF29A2C6B2DF000EB653F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
