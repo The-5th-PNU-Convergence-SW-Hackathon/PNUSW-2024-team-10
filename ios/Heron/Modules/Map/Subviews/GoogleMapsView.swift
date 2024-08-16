@@ -1,26 +1,74 @@
 import SwiftUI
-import GoogleMaps
 import UIKit
+import GoogleMaps
 
-struct GoogleMapsView: UIViewRepresentable {
-    typealias UIViewType = GMSMapView
+class GoogleMapsViewController: UIViewController {
+    var latitude: Double
+    var longitude: Double
+    var zoom: Double
+    var bearing: Double
     
-    func makeUIView(context: Context) -> GMSMapView {
-        let camera = GMSCameraPosition.camera(withLatitude: -23.5899619, longitude: -46.66747, zoom: 12.0)
-                
-        let options = GMSMapViewOptions()
-        
-        options.camera = camera
-        options.frame = .zero
-        
-        let mapView = GMSMapView(options: options)
-        
-        return mapView
+    private var isInitialized = false
+    
+    init(latitude: Double, longitude: Double, zoom: Double, bearing: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.zoom = zoom
+        self.bearing = bearing
+        super.init(nibName: nil, bundle: nil)
     }
     
-    func updateUIView(_ uiView: GMSMapView, context: Context) {
-        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if (!isInitialized) {
+            let camera = GMSCameraPosition.camera(
+                withLatitude: latitude,
+                longitude: longitude,
+                zoom: Float(zoom),
+                bearing: bearing,
+                viewingAngle: 0.0
+            )
+                    
+            let options = GMSMapViewOptions()
+            options.camera = camera
+            options.frame = .zero
+            
+            let mapView = GMSMapView(options: options)
+            mapView.isOpaque = false
+            mapView.backgroundColor = .systemBackground
+            
+            do {
+                if (self.traitCollection.userInterfaceStyle == .dark) {
+                    mapView.mapStyle = try GMSMapStyle(jsonString: _darkMapStyle)
+                } else {
+                    mapView.mapStyle = try GMSMapStyle(jsonString: _mapStyle)
+                }
+            } catch {
+                NSLog("Error parsing the map style: \(error.localizedDescription)")
+            }
+            
+            self.view = mapView
+            isInitialized = true
+        }
+    }
+}
+
+struct GoogleMapsView: UIViewControllerRepresentable {
+    var latitude: Double
+    var longitude: Double
+    var zoom: Double
+    var bearing: Double
+    
+    func makeUIViewController(context: Context) -> GoogleMapsViewController {
+        return GoogleMapsViewController(latitude: latitude, longitude: longitude, zoom: zoom, bearing: bearing)
+    }
+    
+    func updateUIViewController(_ uiViewController: GoogleMapsViewController, context: Context) {}
 }
 
 

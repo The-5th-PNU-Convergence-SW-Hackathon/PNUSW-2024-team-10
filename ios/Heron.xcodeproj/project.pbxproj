@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6084FE912C6BAFC90052D1AC /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 6084FE902C6BAFC90052D1AC /* GoogleMaps */; };
+		60AA60DD2C6E55F4007C3F12 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 60AA60DC2C6E55F4007C3F12 /* LicenseList */; };
 		60C582DA2C6C4EB6008A5561 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 60C582D92C6C4EB6008A5561 /* SwiftUIIntrospect */; };
 /* End PBXBuildFile section */
 
@@ -23,17 +24,28 @@
 				Common/Extensions/NavigationBottom.swift,
 				Common/Extensions/ScrollOffset.swift,
 				Common/Files/Debug.xcconfig,
+				Common/Files/Package.resolved,
 				Common/Files/Release.xcconfig,
 				Common/Files/Secrets.xcconfig,
 				Common/Resources/Assets.xcassets,
+				Common/Resources/Test.xcassets,
 				Common/Utilities/Interpolate.swift,
 				HeronApp.swift,
 				Modules/Courses/CoursesView.swift,
+				Modules/Courses/Subviews/CourseListItemView.swift,
+				Modules/Courses/Subviews/CoursesFiltersView.swift,
+				Modules/Courses/Subviews/CoursesLabelView.swift,
 				Modules/Info/InfoView.swift,
-				Modules/Info/Subviews/WebView.swift,
+				Modules/Info/Subviews/InfoWebView.swift,
 				Modules/Map/MapView.swift,
 				Modules/Map/Subviews/GoogleMapsView.swift,
+				Modules/Map/Subviews/MapChipView.swift,
+				Modules/Map/Subviews/MapFiltersView.swift,
 				Modules/More/MoreView.swift,
+				Modules/More/Subviews/AccountInfoView.swift,
+				Modules/More/Subviews/ApplicationInfoView.swift,
+				UI/Label/Label.swift,
+				UI/SignIn/SignInView.swift,
 			);
 			target = 606AF26B2C6B2DEE00EB653F /* Heron */;
 		};
@@ -49,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6084FE912C6BAFC90052D1AC /* GoogleMaps in Frameworks */,
+				60AA60DD2C6E55F4007C3F12 /* LicenseList in Frameworks */,
 				60C582DA2C6C4EB6008A5561 /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +104,7 @@
 			packageProductDependencies = (
 				6084FE902C6BAFC90052D1AC /* GoogleMaps */,
 				60C582D92C6C4EB6008A5561 /* SwiftUIIntrospect */,
+				60AA60DC2C6E55F4007C3F12 /* LicenseList */,
 			);
 			productName = Heron;
 			productReference = 606AF26C2C6B2DEE00EB653F /* Heron.app */;
@@ -123,6 +137,7 @@
 			packageReferences = (
 				6084FE8E2C6B5DDF0052D1AC /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 				60C582D82C6C4EB6008A5561 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
+				60AA60DB2C6E55F4007C3F12 /* XCRemoteSwiftPackageReference "LicenseList" */,
 			);
 			productRefGroup = 606AF26D2C6B2DEE00EB653F /* Products */;
 			projectDirPath = "";
@@ -156,6 +171,8 @@
 /* Begin XCBuildConfiguration section */
 		606AF2902C6B2DF000EB653F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 606AF2C02C6B384F00EB653F /* Heron */;
+			baseConfigurationReferenceRelativePath = Common/Files/Debug.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -219,6 +236,8 @@
 		};
 		606AF2912C6B2DF000EB653F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 606AF2C02C6B384F00EB653F /* Heron */;
+			baseConfigurationReferenceRelativePath = Common/Files/Release.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -288,12 +307,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Heron/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Heron;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -322,12 +343,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Heron/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Heron;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,7 +394,15 @@
 			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 9.1.0;
+			};
+		};
+		60AA60DB2C6E55F4007C3F12 /* XCRemoteSwiftPackageReference "LicenseList" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cybozu/LicenseList.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		60C582D82C6C4EB6008A5561 /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
@@ -389,6 +420,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6084FE8E2C6B5DDF0052D1AC /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
 			productName = GoogleMaps;
+		};
+		60AA60DC2C6E55F4007C3F12 /* LicenseList */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60AA60DB2C6E55F4007C3F12 /* XCRemoteSwiftPackageReference "LicenseList" */;
+			productName = LicenseList;
 		};
 		60C582D92C6C4EB6008A5561 /* SwiftUIIntrospect */ = {
 			isa = XCSwiftPackageProductDependency;

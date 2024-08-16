@@ -15,6 +15,7 @@ struct InfoWebView: UIViewRepresentable {
         
         webView.backgroundColor = .notionBackground
         webView.isOpaque = false
+        webView.allowsBackForwardNavigationGestures = true
         
         webView.scrollView.contentInset = UIEdgeInsets(
             top: 0,

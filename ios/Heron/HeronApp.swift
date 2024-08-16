@@ -5,7 +5,7 @@ import GoogleMaps
 @main
 struct HeronApp: App {
     init() {
-        guard let gmsApiKey = Bundle.main.object(forInfoDictionaryKey: "GMSApiKey") as? String else {
+        guard let gmsApiKey = Bundle.main.infoDictionary?["GoogleMapsApiKey"] as? String else {
             fatalError("Missing Google Maps API Key")
         }
         
@@ -20,7 +20,6 @@ struct HeronApp: App {
 }
 
 struct MainTabView: View {
-    
     @State var selection = 0
     
     var body: some View {

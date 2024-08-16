@@ -1,6 +1,15 @@
 {
-  "originHash" : "97537444545088106aa75f9eb62cf267db54ea20b36b3ad281bd1d99b3420c69",
+  "originHash" : "de4d831e7f2e2acdc7f598c39f19a451bb39006aa083180f8e7ff790ad8f3d49",
   "pins" : [
+    {
+      "identity" : "acknowlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vtourraine/AcknowList",
+      "state" : {
+        "revision" : "125ff1915a639bf7d97471a4d5ae16765d0c50f2",
+        "version" : "3.2.0"
+      }
+    },
     {
       "identity" : "ios-maps-sdk",
       "kind" : "remoteSourceControl",
@@ -8,15 +17,6 @@
       "state" : {
         "revision" : "9a047386dc75d576fc93b82ac5890f88e31dd1d6",
         "version" : "9.1.0"
-      }
-    },
-    {
-      "identity" : "licenselist",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/cybozu/LicenseList.git",
-      "state" : {
-        "revision" : "3f9d823c93a5d61d998c1bbfdf70dbdde7134f10",
-        "version" : "1.0.0"
       }
     },
     {
