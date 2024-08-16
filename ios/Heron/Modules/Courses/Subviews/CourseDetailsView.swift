@@ -4,6 +4,7 @@ import SwiftUIIntrospect
 struct CourseDetailsView: View {
     @State private var tableViewHeight: CGFloat = 0
     @State private var isSignInSheetEnabled: Bool = false
+    @State private var isFoodSheetEnabled: Bool = false
     
     var title: String = "Art & Healing Tour"
     var thumbnail: URL? = URL(string: "https://futuristic-budget-d22.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F92a61ff1-a5fc-4b36-9910-db0f8218224b%2F15af9355-e1dd-4c9f-ada2-eb1bbfc0cbb2%2Fimage.png?table=block&id=0cc6f44d-9b59-4869-99ae-014466b1e80e&spaceId=92a61ff1-a5fc-4b36-9910-db0f8218224b&width=2000&userId=&cache=v2")
@@ -84,14 +85,21 @@ struct CourseDetailsView: View {
                 .textCase(.none)
             ) {}
             
-            Section(
-                header:
-                    Text("Itinary")
-                        .listRowInsets(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
-            ) {
-                ForEach(itinaries, id: \.title) { itinary in
-                    ItinaryItemView(itinary)
+            FoodSheetProvider(isPresented: $isFoodSheetEnabled) {
+                Section(
+                    header:
+                        Text("Itinary")
+                            .listRowInsets(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
+                ) {
+                    ForEach(itinaries, id: \.title) { itinary in
+                        Button {
+                            isFoodSheetEnabled = true
+                        } label: {
+                            ItinaryItemView(itinary)
+                        }
+                        .foregroundStyle(Color(.label))
                         .listRowInsets(EdgeInsets())
+                    }
                 }
             }
         }
