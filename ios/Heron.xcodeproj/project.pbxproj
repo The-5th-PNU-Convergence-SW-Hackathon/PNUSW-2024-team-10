@@ -32,9 +32,10 @@
 				Common/Utilities/Interpolate.swift,
 				HeronApp.swift,
 				Modules/Courses/CoursesView.swift,
+				Modules/Courses/Subviews/CourseDetailsView.swift,
 				Modules/Courses/Subviews/CourseListItemView.swift,
 				Modules/Courses/Subviews/CoursesFiltersView.swift,
-				Modules/Courses/Subviews/CoursesLabelView.swift,
+				Modules/Courses/Subviews/ItinaryItemView.swift,
 				Modules/Info/InfoView.swift,
 				Modules/Info/Subviews/InfoWebView.swift,
 				Modules/Map/MapView.swift,
@@ -45,6 +46,7 @@
 				Modules/More/Subviews/AccountInfoView.swift,
 				Modules/More/Subviews/ApplicationInfoView.swift,
 				UI/Label/Label.swift,
+				UI/Label/LabelTypes.swift,
 				UI/SignIn/SignInView.swift,
 			);
 			target = 606AF26B2C6B2DEE00EB653F /* Heron */;

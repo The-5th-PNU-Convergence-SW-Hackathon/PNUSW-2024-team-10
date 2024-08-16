@@ -1,7 +1,9 @@
 import SwiftUI
 import GoogleMaps
 
-struct MapView: View { 
+struct MapView: View {
+    @State private var isFavoriteOnly: Bool = false
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             GoogleMapsView(
@@ -30,6 +32,22 @@ struct MapView: View {
                 .padding(.top, 6.0)
                 .padding(.bottom, 15.0)
             }
+            
+            VStack(alignment: .trailing) {
+                Spacer()
+                MapChip(
+                    text: "Favorites",
+                    icon: Image(systemName: isFavoriteOnly ? "heart.fill" : "heart"),
+                    type: .iconOnly,
+                    isEnabled: isFavoriteOnly,
+                    onChange: { isEnabled in
+                        isFavoriteOnly = isEnabled
+                    }
+                )
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 20)
         }
         .toolbarBackground(.visible, for: .tabBar)
     }

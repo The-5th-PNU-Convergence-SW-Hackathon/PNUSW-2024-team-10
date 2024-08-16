@@ -5,7 +5,7 @@ struct CourseListItem: View {
     var imageURL: URL?
     var zone: String
     var duration: String
-    var label: CoursesLabelType
+    var label: CourseStatusLabelType?
     var landmark: String
     
     var body: some View {
@@ -31,26 +31,23 @@ struct CourseListItem: View {
                                 .font(.system(size: 14)).foregroundStyle(.secondary)
                         }
                         
-                        CoursesLabelView(label)
+                        if (label != nil) {
+                            CourseStatusLabelView(label!)
+                        }
                     }
                     .frame(minHeight: 100, alignment: .center)
                         
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                HStack(alignment: .top) {
+                HStack(alignment: .firstTextBaseline) {
                     Text("Land Mark".uppercased()).font(.system(size: 13, weight: .semibold))
                     Text("\(landmark)").font(.system(size: 13, weight: .medium)).foregroundStyle(Color.accentColor)
                 }
             }
             .padding(10)
             
-            NavigationLink {
-                
-            } label: {
-                
-            }
-            .opacity(0.0)
+            CourseDetailsLink()
         }
         
     }
