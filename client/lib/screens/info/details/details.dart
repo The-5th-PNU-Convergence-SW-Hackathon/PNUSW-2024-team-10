@@ -20,6 +20,8 @@ class _InfoDetailsScreenState extends State<InfoDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+
     return Scaffold(
       appBar: HeronAppBar(
           scrollOffset: scrollOffset,
@@ -35,6 +37,7 @@ class _InfoDetailsScreenState extends State<InfoDetailsScreen> {
           ]),
       body: InfoDetailsWebView(
         id: widget.id,
+        locale: locale,
         onScroll: (offset) {
           setState(() {
             scrollOffset = offset;

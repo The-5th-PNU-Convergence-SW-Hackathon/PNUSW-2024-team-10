@@ -1,40 +1,83 @@
-import 'dart:ui';
-
-import 'package:flutter/services.dart';
+import 'package:heron/constants/preferences.dart';
 import 'package:heron/widgets/theme/label.dart';
 import 'package:heron/utilities/ripple.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:heron/widgets/theme/prefs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HeronApp extends StatelessWidget {
+const _kDefaultLocale = null;
+const _kDefaultThemeMode = ThemeMode.system;
+
+class HeronApp extends StatefulWidget {
   final Locale? locale;
+  final ThemeMode? themeMode;
   final RouterConfig<Object> routerConfig;
 
   const HeronApp({
     super.key,
     this.locale,
+    this.themeMode,
     required this.routerConfig,
   });
 
   @override
+  State<HeronApp> createState() => _HeronAppState();
+}
+
+class _HeronAppState extends State<HeronApp> {
+  late Locale? locale;
+  late ThemeMode themeMode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    locale = widget.locale ?? _kDefaultLocale;
+    themeMode = widget.themeMode ?? _kDefaultThemeMode;
+  }
+
+  void setLocale(Locale? locale) async {
+    setState(() {
+      this.locale = locale ?? _kDefaultLocale;
+    });
+    final prefs = await SharedPreferences.getInstance();
+    if (locale != null) {
+      prefs.setString(kPrefLanguage, locale.languageCode);
+    } else {
+      prefs.remove(kPrefLanguage);
+    }
+  }
+
+  void setThemeMode(ThemeMode? themeMode) async {
+    setState(() {
+      this.themeMode = themeMode ?? _kDefaultThemeMode;
+    });
+    final prefs = await SharedPreferences.getInstance();
+    if (themeMode != null) {
+      prefs.setString(kPrefThemeMode, themeMode.toString());
+    } else {
+      prefs.remove(kPrefThemeMode);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.transparent,
-      ),
-    );
-
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-
-    return MaterialApp.router(
-      title: 'Heron',
-      themeMode: ThemeMode.system,
-      theme: MaterialTheme.light(),
-      darkTheme: MaterialTheme.dark(),
+    return HeronInheritedWidget(
       locale: locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: routerConfig,
+      themeMode: themeMode,
+      setLocale: setLocale,
+      setThemeMode: setThemeMode,
+      child: MaterialApp.router(
+        title: 'Heron',
+        themeMode: themeMode,  // InheritedWidget에서 가져온 themeMode 사용
+        theme: MaterialTheme.light(),
+        darkTheme: MaterialTheme.dark(),
+        locale: locale,  // InheritedWidget에서 가져온 locale 사용
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        routerConfig: widget.routerConfig,
+      ),
     );
   }
 }

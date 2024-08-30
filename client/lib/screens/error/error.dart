@@ -10,10 +10,10 @@ class ErrorScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.errorTitle),
+        title: Text(l10n.commonErrorTitle),
       ),
       body: Center(
-        child: Text(l10n.errorNotFound),
+        child: Text(l10n.commonErrorNotFound),
       ),
     );
   }

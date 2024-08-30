@@ -1,6 +1,6 @@
 {
-  "errorTitle": "오류",
-  "errorNotFound": "요청 경로가 잘못되었습니다.",
+  "commonErrorTitle": "오류",
+  "commonErrorNotFound": "요청 경로가 잘못되었습니다.",
 
   "commonConfirmationYes": "예",
   "commonConfirmationNo": "아니요",
@@ -8,11 +8,11 @@
   "commonConfirmationApply": "적용",
   "commonConfirmationCancel": "취소",
 
-  "filterTitle": "필터",
-  "filterApply": "적용",
-  "filterReset": "초기화",
-  "filterSelectAll": "모두 선택",
-  "filterUnselectAll": "모두 해제",
+  "commonFilterTitle": "필터",
+  "commonFilterApply": "적용",
+  "commonFilterReset": "초기화",
+  "commonFilterSelectAll": "모두 선택",
+  "commonFilterUnselectAll": "모두 해제",
 
   "signInToContinue": "부산 생활,\nHeron과 함께 즐겨보아요!",
   "signInWithGoogle": "Google로 로그인",
@@ -84,6 +84,10 @@
   "settingsUserSignOut": "로그아웃",
   "settingsUserSignOutConfirmation": "정말로 로그아웃하시겠습니까?",
   "settingsUserSignOutSuccess": "로그아웃되었습니다.",
+  "settingsUserTheme": "테마 변경",
+  "settingsUserThemeSystem": "시스템 기본값",
+  "settingsUserThemeLight": "밝은 테마",
+  "settingsUserThemeDark": "어두운 테마",
   "settingsUserLanguage": "언어 변경",
   "settingsUserLanguageSystem": "시스템 기본값",
   "settingsUserLanguageEnglish": "영어 (English)",

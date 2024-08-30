@@ -6,8 +6,9 @@ import 'package:go_router/go_router.dart';
 
 class InfoWebView extends StatefulWidget {
   final void Function(double)? onScroll;
+  final Locale locale;
 
-  const InfoWebView({super.key, this.onScroll});
+  const InfoWebView({super.key, this.onScroll, required this.locale});
 
   @override
   State<InfoWebView> createState() => _InfoWebViewState();
@@ -59,7 +60,9 @@ class _InfoWebViewState extends State<InfoWebView> {
           ..setOnScrollPositionChange((position) {
             widget.onScroll?.call(position.y);
           })
-          ..loadRequest(Uri.parse(kInfoBaseUrl));
+          ..loadRequest(Uri.parse(kInfoBaseUrl), headers: {
+            "Accept-Language": widget.locale.languageCode,
+          });
       });
     });
   }

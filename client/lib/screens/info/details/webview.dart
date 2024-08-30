@@ -6,11 +6,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 class InfoDetailsWebView extends StatefulWidget {
   final String id;
   final void Function(double)? onScroll;
+  final Locale locale;
 
   const InfoDetailsWebView({
     super.key,
     required this.id,
     this.onScroll,
+    required this.locale,
   });
 
   @override
@@ -54,7 +56,9 @@ class _InfoDetailsWebViewState extends State<InfoDetailsWebView> {
           ..setOnScrollPositionChange((position) {
             widget.onScroll?.call(position.y);
           })
-          ..loadRequest(Uri.parse(baseUrl));
+          ..loadRequest(Uri.parse(baseUrl), headers: {
+            "Accept-Language": widget.locale.languageCode,
+          });
       });
     });
   }
