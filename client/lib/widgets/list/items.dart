@@ -40,11 +40,16 @@ class HeronPressableListItem extends HeronListItem {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onPressed,
         splashFactory: HeronRipple.splashFactory,
+        splashColor: colorScheme.outlineVariant.withOpacity(0.5),
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
         child: super.build(context),
       ),
     );
