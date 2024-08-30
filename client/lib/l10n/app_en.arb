@@ -1,17 +1,20 @@
 {
+  "commonErrorTitle": "Error",
+  "commonErrorNotFound": "The requested path was not found.",
+
   "commonConfirmationYes": "Yes",
   "commonConfirmationNo": "No",
 
   "commonConfirmationApply": "Apply",
   "commonConfirmationCancel": "Cancel",
 
-  "filterTitle": "Filter",
-  "filterApply": "Apply",
-  "filterReset": "Reset",
-  "filterSelectAll": "Select All",
-  "filterUnselectAll": "Unselect All",
+  "commonFilterTitle": "Filter",
+  "commonFilterApply": "Apply",
+  "commonFilterReset": "Reset",
+  "commonFilterSelectAll": "Select All",
+  "commonFilterUnselectAll": "Unselect All",
 
-  "signInToContinue": "Enjoy your life in Busan\nDwith Heron!",
+  "signInToContinue": "Enjoy your life in Busan\nwith Heron!",
   "signInWithGoogle": "Sign in with Google",
   "signInWithApple": "Sign in with Apple",
 
@@ -99,6 +102,10 @@
   "settingsUserSignOut": "Sign Out",
   "settingsUserSignOutConfirmation": "Are you sure you want to sign out?",
   "settingsUserSignOutSuccess": "Signed out successfully",
+  "settingsUserTheme": "Change Theme",
+  "settingsUserThemeSystem": "System Default",
+  "settingsUserThemeLight": "Light",
+  "settingsUserThemeDark": "Dark",
   "settingsUserLanguage": "Change Language",
   "settingsUserLanguageSystem": "System Default",
   "settingsUserLanguageEnglish": "English",

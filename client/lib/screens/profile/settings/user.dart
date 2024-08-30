@@ -1,4 +1,5 @@
 import 'package:heron/screens/profile/settings/language.dart';
+import 'package:heron/screens/profile/settings/theme.dart';
 import 'package:heron/widgets/list/items.dart';
 import 'package:heron/widgets/list/list.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,13 @@ class HeronUserSettingsList extends StatelessWidget {
             showLanguageSelectorDialog(context);
           },
           child: Text(l10n.settingsUserLanguage),
+        ),
+        HeronNavigationListItem(
+          onPressed: () async {
+            // alert dialog
+            showThemeSelectorDialog(context);
+          },
+          child: Text(l10n.settingsUserTheme),
         ),
         HeronPressableListItem(
           onPressed: () {

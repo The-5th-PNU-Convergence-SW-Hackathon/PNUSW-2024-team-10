@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:heron/constants/preferences.dart';
-import 'package:heron/widgets/restart/restart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:heron/widgets/theme/prefs.dart';
 
 void showLanguageSelectorDialog(BuildContext context) async {
-  final currentLocaleString = await SharedPreferences.getInstance()
-      .then((prefs) => prefs.getString('language'));
-
-  final initialLocale =
-      currentLocaleString != null ? Locale(currentLocaleString) : null;
+  final currentLocale = getLocale(context);
 
   if (context.mounted) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return LanguageSelectorDialog(initialLocale: initialLocale);
+        return LanguageSelectorDialog(initialLocale: currentLocale);
       },
     );
   }
@@ -36,18 +30,8 @@ class LanguageSelectorDialog extends StatefulWidget {
 class _LanguageSelectorDialogState extends State<LanguageSelectorDialog> {
   Locale? _selectedLocale;
 
-  void _onLanguageSelected(BuildContext context, Locale? locale) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    if (locale == null) {
-      prefs.remove(kPrefLanguage);
-    } else {
-      prefs.setString(kPrefLanguage, locale.languageCode);
-    }
-
-    if (context.mounted) {
-      RestartWidget.restartApp(context);
-    }
+  void _onLanguageSelected(BuildContext context, Locale? locale) {
+    setLocale(context, locale);
   }
 
   @override

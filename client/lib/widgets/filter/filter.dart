@@ -57,14 +57,14 @@ void showFilterSheet(
                     children: [
                       const SizedBox(width: 10.0),
                       Text(
-                        l10n.filterTitle,
+                        l10n.commonFilterTitle,
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const Spacer(),
                       HeronTextButton(
                         onPressed: onReset,
                         child: Text(
-                          l10n.filterReset,
+                          l10n.commonFilterReset,
                           style: TextStyle(color: colorScheme.outline),
                         ),
                       ),
@@ -104,7 +104,7 @@ void showFilterSheet(
                     onApply();
                     Navigator.of(context).pop();
                   },
-                  child: Text(l10n.filterApply),
+                  child: Text(l10n.commonFilterApply),
                 ),
               ),
             ],
@@ -143,8 +143,9 @@ class HeronFilterSelector<T> extends StatelessWidget {
     ];
 
     final isAllSelected = chipItems.every((item) => item.selected);
-    final selectAllText =
-        isAllSelected ? l10n.filterUnselectAll : l10n.filterSelectAll;
+    final selectAllText = isAllSelected
+        ? l10n.commonFilterUnselectAll
+        : l10n.commonFilterSelectAll;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

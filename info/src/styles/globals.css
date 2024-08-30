@@ -1,0 +1,182 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+:root {
+  --color-key: black;
+  --color-key-inverse: white;
+
+  --color-surface-rgb: 249, 249, 255;
+  --color-surface-dim-rgb: 216, 217, 229;
+  --color-surface-bright-rgb: 255, 255, 255;
+  --color-on-surface-rgb: 24, 28, 35;
+  --color-on-surface-variant-rgb: 65, 71, 85;
+  --color-outline-rgb: 113, 119, 134;
+  --color-outline-variant-rgba: 65, 71, 85, 0.1;
+  --color-primary-rgb: 0, 112, 235;
+  --color-primary-container-rgb: 0, 112, 235;
+  --color-on-primary-rgb: 255, 255, 255;
+  --color-on-primary-container-rgb: 255, 255, 255;
+
+  --color-key-dark: white;
+  --color-key-inverse-dark: black;
+
+  --color-surface-rgb-dark: 16, 19, 27;
+  --color-surface-dim-rgb-dark: 11, 14, 22;
+  --color-surface-bright-rgb-dark: 24, 28, 35;
+  --color-on-surface-rgb-dark: 224, 226, 237;
+  --color-on-surface-variant-rgb-dark: 193, 198, 215;
+  --color-outline-rgb-dark: 139, 144, 160;
+  --color-outline-variant-rgba-dark: 193, 198, 215, 0.1;
+  --color-primary-rgb-dark: 116, 180, 255;
+  --color-primary-container-rgb-dark: 0, 112, 235;
+  --color-on-primary-rgb-dark: 0, 46, 105;
+  --color-on-primary-container-rgb-dark: 255, 255, 255;
+
+  --color-surface: rgb(var(--color-surface-rgb));
+  --color-surface-dim: rgb(var(--color-surface-dim-rgb));
+  --color-surface-bright: rgb(var(--color-surface-bright-rgb));
+  --color-on-surface: rgb(var(--color-on-surface-rgb));
+  --color-on-surface-variant: rgb(var(--color-on-surface-variant-rgb));
+  --color-outline: rgb(var(--color-outline-rgb));
+  --color-outline-variant: rgba(var(--color-outline-variant-rgba));
+  --color-primary: rgb(var(--color-primary-rgb));
+  --color-primary-container: rgb(var(--color-primary-container-rgb));
+  --color-on-primary: rgb(var(--color-on-primary-rgb));
+  --color-on-primary-container: rgb(var(--color-on-primary-container-rgb));
+
+  --font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+
+  line-height: 1.42;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: var(--font-family);
+
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-headline-large,
+.font-headline-medium,
+.font-headline-small,
+.font-title-large,
+.font-title-medium,
+.font-title-small,
+.font-body-large,
+.font-body-medium,
+.font-body-small {
+  font-family: var(--font-family);
+}
+
+.font-headline-large,
+.font-headline-medium,
+.font-headline-small,
+.font-title-large,
+.font-title-medium,
+.font-title-small {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.font-headline-large {
+  font-size: 30px;
+}
+
+.font-headline-medium {
+  font-size: 26px;
+}
+
+.font-headline-small {
+  font-size: 22px;
+}
+
+.font-title-large {
+  font-size: 20px;
+}
+
+.font-title-medium {
+  font-size: 18px;
+}
+
+.font-title-small {
+  font-size: 16px;
+}
+
+.font-body-large,
+.font-body-medium,
+.font-body-small {
+  font-weight: 400;
+  line-height: 1.42;
+}
+
+.font-body-large {
+  font-size: 16px;
+}
+
+.font-body-medium {
+  font-size: 14px;
+}
+
+.font-body-small {
+  font-size: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-brightness = "light"]) {
+    color-scheme: dark;
+    --color-key: var(--color-key-dark);
+    --color-key-inverse: var(--color-key-inverse-dark);
+
+    --color-surface-rgb: var(--color-surface-rgb-dark);
+    --color-surface-dim-rgb: var(--color-surface-dim-rgb-dark);
+    --color-surface-bright-rgb: var(--color-surface-bright-rgb-dark);
+    --color-on-surface-rgb: var(--color-on-surface-rgb-dark);
+    --color-on-surface-variant-rgb: var(--color-on-surface-variant-rgb-dark);
+    --color-outline-rgb: var(--color-outline-rgb-dark);
+    --color-outline-variant-rgba: var(--color-outline-variant-rgba-dark);
+    --color-primary-rgb: var(--color-primary-rgb-dark);
+    --color-primary-container-rgb: var(--color-primary-container-rgb-dark);
+    --color-on-primary-rgb: var(--color-on-primary-rgb-dark);
+    --color-on-primary-container-rgb: var(--color-on-primary-container-rgb-dark);
+  }
+}
+
+:root[data-brightness = "dark"] {
+  color-scheme: dark;
+  --color-key: var(--color-key-dark);
+  --color-key-inverse: var(--color-key-inverse-dark);
+
+  --color-surface-rgb: var(--color-surface-rgb-dark);
+  --color-surface-dim-rgb: var(--color-surface-dim-rgb-dark);
+  --color-surface-bright-rgb: var(--color-surface-bright-rgb-dark);
+  --color-on-surface-rgb: var(--color-on-surface-rgb-dark);
+  --color-on-surface-variant-rgb: var(--color-on-surface-variant-rgb-dark);
+  --color-outline-rgb: var(--color-outline-rgb-dark);
+  --color-outline-variant-rgba: var(--color-outline-variant-rgba-dark);
+  --color-primary-rgb: var(--color-primary-rgb-dark);
+  --color-primary-container-rgb: var(--color-primary-container-rgb-dark);
+  --color-on-primary-rgb: var(--color-on-primary-rgb-dark);
+  --color-on-primary-container-rgb: var(--color-on-primary-container-rgb-dark);
+}

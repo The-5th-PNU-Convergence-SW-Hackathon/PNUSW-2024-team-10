@@ -1,0 +1,32 @@
+.main {
+  padding-bottom: 80px;
+}
+
+.header {
+  max-width: var(--notion-max-width);
+  margin: 0 auto;
+  padding: 8px 16px 36px 16px;
+}
+
+.title_line {
+  margin-bottom: 8px;
+}
+
+/* inline header h1, tags */
+.title_line h1 {
+  font-weight: 600;
+  display: inline;
+}
+
+.title_line h1:after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+}
+
+.tag {
+  vertical-align: text-bottom;
+  display: inline-block;
+  height: 27.5px;
+  padding-top: 4px;
+}

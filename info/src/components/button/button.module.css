@@ -1,0 +1,22 @@
+
+
+.button {
+  background-color: transparent;
+  font-family: var(--font-family);
+  border: 1px solid rgba(var(--color-outline-rgb), 0.3);
+  border-radius: 6px;
+  padding: 4px 8px;
+
+  transition: background-color 0.1s;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: rgba(var(--color-outline-rgb), 0.08);
+  }
+}
+
+.button:active {
+  transition: none;
+  background-color: rgba(var(--color-outline-rgb), 0.15);
+}
