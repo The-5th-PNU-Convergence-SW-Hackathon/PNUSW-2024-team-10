@@ -117,7 +117,7 @@ class _FilterSheetBodyState extends State<FilterSheetBody> {
             items: filters[i].options,
             onSelectAll: () => _selectAllOptions(filters[i].id),
             onDeselectAll: () => _deselectAllOptions(filters[i].id),
-            builder: (i, option) => HeronFilterChip(
+            builder: (_, option) => HeronFilterChip(
               selected: option.selected,
               child: Text(option.value),
               onSelect: (selected) =>
