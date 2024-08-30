@@ -2,21 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:heron/constants/webview.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:go_router/go_router.dart';
 
-class InfoWebView extends StatefulWidget {
-  final void Function(double)? onScroll;
+abstract class InfoBaseWebView extends StatefulWidget {
   final Locale locale;
+  final Brightness brightness;
+  final WebViewController Function(WebViewController) webViewBuilder;
 
-  const InfoWebView({super.key, this.onScroll, required this.locale});
+  const InfoBaseWebView({
+    super.key,
+    required this.locale,
+    required this.brightness,
+    this.webViewBuilder = _defaultWebViewBuilder,
+  });
 
   @override
-  State<InfoWebView> createState() => _InfoWebViewState();
+  State<InfoBaseWebView> createState() => _InfoBaseWebViewState();
+
+  String get baseUrl;
+
+  NavigationDecision handleNavigationRequest(
+      NavigationRequest request, BuildContext context);
 }
 
-class _InfoWebViewState extends State<InfoWebView> {
+class _InfoBaseWebViewState extends State<InfoBaseWebView> {
   WebViewController? controller;
   bool isVisible = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context);
+    final brightness = Theme.of(context).brightness;
+
+    controller?.loadRequest(Uri.parse(widget.baseUrl), headers: {
+      "Accept-Language": locale.languageCode,
+      kHeronBrightnessKey: brightness.name,
+    });
+  }
 
   @override
   void initState() {
@@ -24,7 +46,7 @@ class _InfoWebViewState extends State<InfoWebView> {
 
     PackageInfo.fromPlatform().then((packageInfo) {
       setState(() {
-        controller = WebViewController()
+        controller = widget.webViewBuilder(WebViewController())
           ..setUserAgent(
               "${packageInfo.appName}/${packageInfo.version} (${packageInfo.packageName})")
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -32,22 +54,14 @@ class _InfoWebViewState extends State<InfoWebView> {
           ..setNavigationDelegate(
             NavigationDelegate(
               onNavigationRequest: (request) {
-                final url = request.url;
-                if (!url.startsWith(kInfoBaseUrl)) {
-                  return NavigationDecision.prevent;
+                final decision = widget.handleNavigationRequest(request, context);
+                if (decision == NavigationDecision.navigate) {
+                  setState(() {
+                    isVisible = false;
+                  });
                 }
 
-                final id = url
-                    .substring(kInfoBaseUrl.length + 1)
-                    .split("?")[0]
-                    .split("/")[0];
-
-                if (id.isNotEmpty) {
-                  context.go("/info/$id");
-                  return NavigationDecision.prevent;
-                }
-
-                return NavigationDecision.navigate;
+                return decision;
               },
               onPageFinished: (url) {
                 controller?.runJavaScript(_defaultScript);
@@ -57,11 +71,9 @@ class _InfoWebViewState extends State<InfoWebView> {
               },
             ),
           )
-          ..setOnScrollPositionChange((position) {
-            widget.onScroll?.call(position.y);
-          })
-          ..loadRequest(Uri.parse(kInfoBaseUrl), headers: {
+          ..loadRequest(Uri.parse(widget.baseUrl), headers: {
             "Accept-Language": widget.locale.languageCode,
+            kHeronBrightnessKey: widget.brightness.name,
           });
       });
     });
@@ -88,6 +100,10 @@ class _InfoWebViewState extends State<InfoWebView> {
       ],
     );
   }
+}
+
+WebViewController _defaultWebViewBuilder(WebViewController controller) {
+  return controller;
 }
 
 const _defaultScript = """

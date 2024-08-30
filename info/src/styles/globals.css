@@ -16,6 +16,21 @@
   --color-on-primary-rgb: 255, 255, 255;
   --color-on-primary-container-rgb: 255, 255, 255;
 
+  --color-key-dark: white;
+  --color-key-inverse-dark: black;
+
+  --color-surface-rgb-dark: 16, 19, 27;
+  --color-surface-dim-rgb-dark: 11, 14, 22;
+  --color-surface-bright-rgb-dark: 24, 28, 35;
+  --color-on-surface-rgb-dark: 224, 226, 237;
+  --color-on-surface-variant-rgb-dark: 193, 198, 215;
+  --color-outline-rgb-dark: 139, 144, 160;
+  --color-outline-variant-rgba-dark: 193, 198, 215, 0.1;
+  --color-primary-rgb-dark: 116, 180, 255;
+  --color-primary-container-rgb-dark: 0, 112, 235;
+  --color-on-primary-rgb-dark: 0, 46, 105;
+  --color-on-primary-container-rgb-dark: 255, 255, 255;
+
   --color-surface: rgb(var(--color-surface-rgb));
   --color-surface-dim: rgb(var(--color-surface-dim-rgb));
   --color-surface-bright: rgb(var(--color-surface-bright-rgb));
@@ -44,26 +59,6 @@
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-drag: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --color-key: white;
-    --color-key-inverse: black;
-
-    --color-surface-rgb: 16, 19, 27;
-    --color-surface-dim-rgb: 11, 14, 22;
-    --color-surface-bright-rgb: 24, 28, 35;
-    --color-on-surface-rgb: 224, 226, 237;
-    --color-on-surface-variant-rgb: 193, 198, 215;
-    --color-outline-rgb: 139, 144, 160;
-    --color-outline-variant-rgba: 193, 198, 215, 0.1;
-    --color-primary-rgb: 116, 180, 255;
-    --color-primary-container-rgb: 0, 112, 235;
-    --color-on-primary-rgb: 0, 46, 105;
-    --color-on-primary-container-rgb: 255, 255, 255;
-  }
 }
 
 * {
@@ -146,4 +141,42 @@ a {
 
 .font-body-small {
   font-size: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-brightness = "light"]) {
+    color-scheme: dark;
+    --color-key: var(--color-key-dark);
+    --color-key-inverse: var(--color-key-inverse-dark);
+
+    --color-surface-rgb: var(--color-surface-rgb-dark);
+    --color-surface-dim-rgb: var(--color-surface-dim-rgb-dark);
+    --color-surface-bright-rgb: var(--color-surface-bright-rgb-dark);
+    --color-on-surface-rgb: var(--color-on-surface-rgb-dark);
+    --color-on-surface-variant-rgb: var(--color-on-surface-variant-rgb-dark);
+    --color-outline-rgb: var(--color-outline-rgb-dark);
+    --color-outline-variant-rgba: var(--color-outline-variant-rgba-dark);
+    --color-primary-rgb: var(--color-primary-rgb-dark);
+    --color-primary-container-rgb: var(--color-primary-container-rgb-dark);
+    --color-on-primary-rgb: var(--color-on-primary-rgb-dark);
+    --color-on-primary-container-rgb: var(--color-on-primary-container-rgb-dark);
+  }
+}
+
+:root[data-brightness = "dark"] {
+  color-scheme: dark;
+  --color-key: var(--color-key-dark);
+  --color-key-inverse: var(--color-key-inverse-dark);
+
+  --color-surface-rgb: var(--color-surface-rgb-dark);
+  --color-surface-dim-rgb: var(--color-surface-dim-rgb-dark);
+  --color-surface-bright-rgb: var(--color-surface-bright-rgb-dark);
+  --color-on-surface-rgb: var(--color-on-surface-rgb-dark);
+  --color-on-surface-variant-rgb: var(--color-on-surface-variant-rgb-dark);
+  --color-outline-rgb: var(--color-outline-rgb-dark);
+  --color-outline-variant-rgba: var(--color-outline-variant-rgba-dark);
+  --color-primary-rgb: var(--color-primary-rgb-dark);
+  --color-primary-container-rgb: var(--color-primary-container-rgb-dark);
+  --color-on-primary-rgb: var(--color-on-primary-rgb-dark);
+  --color-on-primary-container-rgb: var(--color-on-primary-container-rgb-dark);
 }

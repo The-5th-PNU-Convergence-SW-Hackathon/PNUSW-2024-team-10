@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { LocaleProvider } from "@/components/locale/locale";
+import getBrightness from "@/utilities/getBrightness";
 
 export const metadata: Metadata = {
   title: "Heron",
@@ -15,9 +16,10 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const brightness = getBrightness();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} data-brightness={brightness}>
       <head>
         <link
           rel="apple-touch-icon"

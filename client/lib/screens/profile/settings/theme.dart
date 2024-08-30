@@ -28,13 +28,12 @@ class ThemeSelectorDialog extends StatefulWidget {
 }
 
 class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
-  ThemeMode? _selectedTheme;
-
+  late ThemeMode _selectedTheme;
 
   @override
   void initState() {
     super.initState();
-    _selectedTheme = widget.initialTheme;
+    _selectedTheme = widget.initialTheme ?? ThemeMode.system;
   }
 
   @override
@@ -42,23 +41,20 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
     final l10n = AppLocalizations.of(context)!;
 
     return AlertDialog(
-      backgroundColor: Theme
-          .of(context)
-          .colorScheme
-          .surfaceBright,
+      backgroundColor: Theme.of(context).colorScheme.surfaceBright,
       title: Text(l10n.settingsUserTheme),
       contentPadding: const EdgeInsets.all(10.0),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          RadioListTile<ThemeMode?>(
+          RadioListTile<ThemeMode>(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
             title: Text(l10n.settingsUserThemeSystem),
-            value: null,
+            value: ThemeMode.system,
             groupValue: _selectedTheme,
             onChanged: (ThemeMode? mode) {
               setState(() {
-                _selectedTheme = mode;
+                _selectedTheme = mode ?? ThemeMode.system;
               });
             },
           ),
@@ -69,7 +65,7 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
             groupValue: _selectedTheme,
             onChanged: (ThemeMode? mode) {
               setState(() {
-                _selectedTheme = mode;
+                _selectedTheme = mode ?? ThemeMode.system;
               });
             },
           ),
@@ -80,7 +76,7 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
             groupValue: _selectedTheme,
             onChanged: (ThemeMode? mode) {
               setState(() {
-                _selectedTheme = mode;
+                _selectedTheme = mode ?? ThemeMode.system;
               });
             },
           ),

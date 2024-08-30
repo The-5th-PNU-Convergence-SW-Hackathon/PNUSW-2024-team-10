@@ -96,8 +96,8 @@ class HeronFilterChip extends StatelessWidget {
                     ],
                   ),
                 ],
+                if (icon != null && child != null) const SizedBox(width: 6.0),
                 if (child != null) ...[
-                  const SizedBox(width: 6.0),
                   DefaultTextStyle(
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: textColor,

@@ -23,6 +23,7 @@ export default function NotionView({
 }: {
   recordMap: ExtendedRecordMap;
 }) {
+
   return (
     <NotionRenderer
       className={styles.main}

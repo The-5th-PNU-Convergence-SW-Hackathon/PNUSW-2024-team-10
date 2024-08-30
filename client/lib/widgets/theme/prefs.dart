@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HeronInheritedWidget extends InheritedWidget {
+class HeronPreferences extends InheritedWidget {
   final Locale? locale;
   final ThemeMode themeMode;
   final void Function(Locale?) setLocale;
   final void Function(ThemeMode?) setThemeMode;
 
-  const HeronInheritedWidget({
+  const HeronPreferences({
     super.key,
     required super.child,
     this.locale,
@@ -15,32 +15,32 @@ class HeronInheritedWidget extends InheritedWidget {
     required this.setThemeMode,
   });
 
-  static HeronInheritedWidget of(BuildContext context) {
-    final HeronInheritedWidget? result =
-    context.dependOnInheritedWidgetOfExactType<HeronInheritedWidget>();
+  static HeronPreferences of(BuildContext context) {
+    final HeronPreferences? result =
+    context.dependOnInheritedWidgetOfExactType<HeronPreferences>();
     assert(result != null, 'No HeronInheritedWidget found in context');
     return result!;
   }
 
   @override
-  bool updateShouldNotify(HeronInheritedWidget oldWidget) {
+  bool updateShouldNotify(HeronPreferences oldWidget) {
     return locale != oldWidget.locale || themeMode != oldWidget.themeMode;
   }
 }
 
 // getters
 void setLocale(BuildContext context, Locale? locale) {
-  HeronInheritedWidget.of(context).setLocale(locale);
+  HeronPreferences.of(context).setLocale(locale);
 }
 
 void setThemeMode(BuildContext context, ThemeMode? themeMode) {
-  HeronInheritedWidget.of(context).setThemeMode(themeMode);
+  HeronPreferences.of(context).setThemeMode(themeMode);
 }
 
 Locale? getLocale(BuildContext context) {
-  return HeronInheritedWidget.of(context).locale;
+  return HeronPreferences.of(context).locale;
 }
 
 ThemeMode getThemeMode(BuildContext context) {
-  return HeronInheritedWidget.of(context).themeMode;
+  return HeronPreferences.of(context).themeMode;
 }

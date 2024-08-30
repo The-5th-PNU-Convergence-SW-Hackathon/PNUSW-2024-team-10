@@ -54,7 +54,7 @@ class _HeronAppState extends State<HeronApp> {
       this.themeMode = themeMode ?? _kDefaultThemeMode;
     });
     final prefs = await SharedPreferences.getInstance();
-    if (themeMode != null) {
+    if (themeMode == ThemeMode.light || themeMode == ThemeMode.dark) {
       prefs.setString(kPrefThemeMode, themeMode.toString());
     } else {
       prefs.remove(kPrefThemeMode);
@@ -63,17 +63,19 @@ class _HeronAppState extends State<HeronApp> {
 
   @override
   Widget build(BuildContext context) {
-    return HeronInheritedWidget(
+    return HeronPreferences(
       locale: locale,
       themeMode: themeMode,
       setLocale: setLocale,
       setThemeMode: setThemeMode,
       child: MaterialApp.router(
         title: 'Heron',
-        themeMode: themeMode,  // InheritedWidget에서 가져온 themeMode 사용
+        themeMode: themeMode,
+        // InheritedWidget에서 가져온 themeMode 사용
         theme: MaterialTheme.light(),
         darkTheme: MaterialTheme.dark(),
-        locale: locale,  // InheritedWidget에서 가져온 locale 사용
+        locale: locale,
+        // InheritedWidget에서 가져온 locale 사용
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         routerConfig: widget.routerConfig,
