@@ -5,10 +5,9 @@ import { Color, PageBlock } from "notion-types";
 import Label from "@/components/label";
 import Time from "@/components/time";
 import { isValidApp } from "@/utilities/isValidApp";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import Button from "@/components/button";
 import Header from "@/components/header";
+
+import type { Metadata, ResolvingMetadata } from 'next'
 
 interface PageProps {
   params: PageParams;
@@ -30,20 +29,17 @@ interface HeronPageBlock extends PageBlock {
   };
 }
 
-export default async function DetailPage({ params }: PageProps) {
-  // const t = useTranslations("ArticlePage");
-
+async function getPage(id: string) {
   const collection_id = process.env.COLLECTION_ID;
   if (!collection_id) {
     throw new Error("No collection ID provided");
   }
 
-  const isApp = isValidApp();
 
   const notion = new NotionAPI();
-  const infoPage = await notion.getPage(params.id);
+  const recordMap = await notion.getPage(id);
 
-  const collections = Object.values(infoPage.collection);
+  const collections = Object.values(recordMap.collection);
   if (collections.length < 1) {
     throw new Error("No collection found");
   }
@@ -53,7 +49,7 @@ export default async function DetailPage({ params }: PageProps) {
     throw new Error("Collection ID does not match");
   }
 
-  const page: HeronPageBlock | undefined = Object.values(infoPage.block).find(
+  const page: HeronPageBlock | undefined = Object.values(recordMap.block).find(
     (o) => o.value.type === "page"
   )?.value as HeronPageBlock;
 
@@ -77,6 +73,27 @@ export default async function DetailPage({ params }: PageProps) {
     }
   });
 
+  return { title, createdTime, tags, recordMap };
+}
+ 
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { title } = await getPage(params.id);
+ 
+  return {
+    title,
+    description: "article from Heron",
+  }
+}
+
+export default async function DetailPage({ params }: PageProps) {
+  // const t = useTranslations("ArticlePage");
+
+  const isApp = isValidApp();
+  const { title, createdTime, tags, recordMap } = await getPage(params.id);
+
   return (
     <>
       {!isApp && (
@@ -99,7 +116,7 @@ export default async function DetailPage({ params }: PageProps) {
           </div>
           <Time date={createdTime} />
         </header>
-        <NotionView recordMap={infoPage} />
+        <NotionView recordMap={recordMap} />
       </article>
     </>
   );

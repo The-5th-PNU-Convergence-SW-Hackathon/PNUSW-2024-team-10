@@ -60,7 +60,7 @@ export default function FlutterChannelProvider({
       }, {} as CollectionPropertySchemaMap);
 
     window[webviewChannel]?.postMessage(JSON.stringify(properties));
-  }, [collection, collectionView]);
+  }, [collection, collectionView]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return children;
 }

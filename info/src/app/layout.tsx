@@ -7,6 +7,7 @@ import getBrightness from "@/utilities/getBrightness";
 
 export const metadata: Metadata = {
   title: "Heron",
+  description: "Aid for PNU Students",
 };
 
 export default async function RootLayout({
