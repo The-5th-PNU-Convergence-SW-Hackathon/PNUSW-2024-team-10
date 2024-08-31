@@ -7,7 +7,8 @@ import Time from "@/components/time";
 import { isValidApp } from "@/utilities/isValidApp";
 import Header from "@/components/header";
 
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: PageParams;
@@ -34,7 +35,6 @@ async function getPage(id: string) {
   if (!collection_id) {
     throw new Error("No collection ID provided");
   }
-
 
   const notion = new NotionAPI();
   const recordMap = await notion.getPage(id);
@@ -75,23 +75,24 @@ async function getPage(id: string) {
 
   return { title, createdTime, tags, recordMap };
 }
- 
+
 export async function generateMetadata(
   { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { title } = await getPage(params.id);
- 
+
   return {
     title,
     description: "article from Heron",
-  }
+  };
 }
 
 export default async function DetailPage({ params }: PageProps) {
   // const t = useTranslations("ArticlePage");
 
   const isApp = isValidApp();
+
   const { title, createdTime, tags, recordMap } = await getPage(params.id);
 
   return (

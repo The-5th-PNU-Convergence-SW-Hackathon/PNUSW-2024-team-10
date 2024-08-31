@@ -1,0 +1,25 @@
+.error {
+  max-width: 600px;
+  
+  margin: 0 auto;
+  text-align: center;
+  padding: 24px;
+}
+
+.error h1 {
+  margin-bottom: 8px;
+}
+
+.error p {
+  margin-bottom: 24px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
