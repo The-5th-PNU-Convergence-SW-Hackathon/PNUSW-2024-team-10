@@ -14,23 +14,6 @@ class MoreScreen extends StatefulWidget {
 }
 
 class _MoreScreenState extends State<MoreScreen> {
-  final profileKey = GlobalKey();
-  double _profileHeight = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final RenderBox profileRenderBox =
-          profileKey.currentContext!.findRenderObject() as RenderBox;
-
-      setState(() {
-        _profileHeight = profileRenderBox.size.height;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // TODO: Implement ProfileScreen
@@ -45,7 +28,7 @@ class _MoreScreenState extends State<MoreScreen> {
           hasBackButton: false,
           scrollOffset: scrollOffset,
           title: Opacity(
-            opacity: ((scrollOffset - _profileHeight) / 12).clamp(0.0, 1.0),
+            opacity: ((scrollOffset - 52) / 12).clamp(0.0, 1.0),
             child: MoreUserProfileSmall(
               name: name,
               image: image,
@@ -67,7 +50,6 @@ class _MoreScreenState extends State<MoreScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   MoreUserProfile(
-                    key: profileKey,
                     name: name,
                     email: email,
                     platform: platform,

@@ -34,7 +34,7 @@ class MoreUserProfile extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 26.0, vertical: 8.0),
           child: Row(
             children: [
-              HeronProfilePic(image, size: 56.0),
+              HeronProfilePic(image, size: 54.0),
               const SizedBox(width: 16.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
