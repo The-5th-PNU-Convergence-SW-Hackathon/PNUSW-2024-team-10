@@ -10,7 +10,7 @@
   --color-on-surface-rgb: 24, 28, 35;
   --color-on-surface-variant-rgb: 65, 71, 85;
   --color-outline-rgb: 113, 119, 134;
-  --color-outline-variant-rgba: 65, 71, 85, 0.1;
+  --color-outline-variant-rgb: 227, 228, 230;
   --color-primary-rgb: 0, 112, 235;
   --color-primary-container-rgb: 0, 112, 235;
   --color-on-primary-rgb: 255, 255, 255;
@@ -25,7 +25,7 @@
   --color-on-surface-rgb-dark: 224, 226, 237;
   --color-on-surface-variant-rgb-dark: 193, 198, 215;
   --color-outline-rgb-dark: 139, 144, 160;
-  --color-outline-variant-rgba-dark: 193, 198, 215, 0.1;
+  --color-outline-variant-rgb-dark: 40, 43, 51;
   --color-primary-rgb-dark: 116, 180, 255;
   --color-primary-container-rgb-dark: 0, 112, 235;
   --color-on-primary-rgb-dark: 0, 46, 105;
@@ -37,7 +37,7 @@
   --color-on-surface: rgb(var(--color-on-surface-rgb));
   --color-on-surface-variant: rgb(var(--color-on-surface-variant-rgb));
   --color-outline: rgb(var(--color-outline-rgb));
-  --color-outline-variant: rgba(var(--color-outline-variant-rgba));
+  --color-outline-variant: rgb(var(--color-outline-variant-rgb));
   --color-primary: rgb(var(--color-primary-rgb));
   --color-primary-container: rgb(var(--color-primary-container-rgb));
   --color-on-primary: rgb(var(--color-on-primary-rgb));
@@ -155,7 +155,7 @@ a {
     --color-on-surface-rgb: var(--color-on-surface-rgb-dark);
     --color-on-surface-variant-rgb: var(--color-on-surface-variant-rgb-dark);
     --color-outline-rgb: var(--color-outline-rgb-dark);
-    --color-outline-variant-rgba: var(--color-outline-variant-rgba-dark);
+    --color-outline-variant-rgb: var(--color-outline-variant-rgb-dark);
     --color-primary-rgb: var(--color-primary-rgb-dark);
     --color-primary-container-rgb: var(--color-primary-container-rgb-dark);
     --color-on-primary-rgb: var(--color-on-primary-rgb-dark);
@@ -174,7 +174,7 @@ a {
   --color-on-surface-rgb: var(--color-on-surface-rgb-dark);
   --color-on-surface-variant-rgb: var(--color-on-surface-variant-rgb-dark);
   --color-outline-rgb: var(--color-outline-rgb-dark);
-  --color-outline-variant-rgba: var(--color-outline-variant-rgba-dark);
+  --color-outline-variant-rgb: var(--color-outline-variant-rgb-dark);
   --color-primary-rgb: var(--color-primary-rgb-dark);
   --color-primary-container-rgb: var(--color-primary-container-rgb-dark);
   --color-on-primary-rgb: var(--color-on-primary-rgb-dark);

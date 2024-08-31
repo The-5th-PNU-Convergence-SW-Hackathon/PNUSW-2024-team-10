@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:heron/constants/webview.dart';
 import 'package:heron/models/info/types.dart';
 import 'package:heron/screens/info/widgets/filter.dart';
-import 'package:heron/screens/info/widgets/webview.dart';
+import 'package:heron/widgets/webview/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -127,9 +127,11 @@ class _InfoScreenState extends State<InfoScreen> {
         webViewBuilder: (_) => controller
           ..setOnScrollPositionChange(
             (pos) {
-              setState(() {
-                scrollOffset = pos.y;
-              });
+              if (mounted) {
+                setState(() {
+                  scrollOffset = pos.y;
+                });
+              }
             },
           )
           ..addJavaScriptChannel(

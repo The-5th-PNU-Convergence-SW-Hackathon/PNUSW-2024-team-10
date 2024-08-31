@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heron/constants/webview.dart';
-import 'package:heron/screens/info/widgets/webview.dart';
+import 'package:heron/widgets/webview/webview.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:heron/widgets/button/icon.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -47,9 +47,11 @@ class _InfoDetailsScreenState extends State<InfoDetailsScreen> {
         webViewBuilder: (controller) => controller
           ..setOnScrollPositionChange(
             (pos) {
-              setState(() {
-                scrollOffset = pos.y;
-              });
+              if (mounted) {
+                setState(() {
+                  scrollOffset = pos.y;
+                });
+              }
             },
           ),
       ),

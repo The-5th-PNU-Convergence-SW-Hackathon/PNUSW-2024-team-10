@@ -87,6 +87,12 @@ class _HeronIconButtonState extends State<HeronIconButton>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 

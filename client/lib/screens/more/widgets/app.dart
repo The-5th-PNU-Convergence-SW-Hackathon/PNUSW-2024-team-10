@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:go_router/go_router.dart';
 
 const String _repositoryUrl =
     "https://github.com/pnusw-hackathon/PNUSW-2024-team-10";
@@ -59,11 +60,15 @@ class _MoreAppInfoListState extends State<MoreAppInfoList> {
           ),
         ),
         HeronNavigationListItem(
-          onPressed: () {},
+          onPressed: () {
+            context.go("/more/terms");
+          },
           child: Text(l10n.moreAppInfoTerms),
         ),
         HeronNavigationListItem(
-          onPressed: () {},
+          onPressed: () {
+            context.go("/more/privacy");
+          },
           child: Text(l10n.moreAppInfoPrivacy),
         ),
         HeronNavigationListItem(

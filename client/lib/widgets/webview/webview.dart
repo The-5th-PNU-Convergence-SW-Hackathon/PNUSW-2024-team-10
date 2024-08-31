@@ -45,38 +45,51 @@ class _InfoBaseWebViewState extends State<InfoBaseWebView> {
     super.initState();
 
     PackageInfo.fromPlatform().then((packageInfo) {
-      setState(() {
-        controller = widget.webViewBuilder(WebViewController())
-          ..setUserAgent(
-              "${packageInfo.appName}/${packageInfo.version} (${packageInfo.packageName})")
-          ..setJavaScriptMode(JavaScriptMode.unrestricted)
-          ..setBackgroundColor(Colors.transparent)
-          ..setNavigationDelegate(
-            NavigationDelegate(
-              onNavigationRequest: (request) {
-                final decision = widget.handleNavigationRequest(request, context);
-                if (decision == NavigationDecision.navigate) {
-                  setState(() {
-                    isVisible = false;
-                  });
-                }
+      if (mounted) {
+        setState(() {
+          controller = widget.webViewBuilder(WebViewController())
+            ..setUserAgent(
+                "${packageInfo.appName}/${packageInfo.version} (${packageInfo.packageName})")
+            ..setJavaScriptMode(JavaScriptMode.unrestricted)
+            ..setBackgroundColor(Colors.transparent)
+            ..setNavigationDelegate(
+              NavigationDelegate(
+                onNavigationRequest: (request) {
+                  final decision =
+                      widget.handleNavigationRequest(request, context);
+                  if (decision == NavigationDecision.navigate) {
+                    if (mounted) {
+                      setState(() {
+                        isVisible = false;
+                      });
+                    }
+                  }
 
-                return decision;
-              },
-              onPageFinished: (url) {
-                controller?.runJavaScript(_defaultScript);
-                setState(() {
-                  isVisible = true;
-                });
-              },
-            ),
-          )
-          ..loadRequest(Uri.parse(widget.baseUrl), headers: {
-            "Accept-Language": widget.locale.languageCode,
-            kHeronBrightnessKey: widget.brightness.name,
-          });
-      });
+                  return decision;
+                },
+                onPageFinished: (url) {
+                  if (mounted) {
+                    controller?.runJavaScript(_defaultScript);
+                    setState(() {
+                      isVisible = true;
+                    });
+                  }
+                },
+              ),
+            )
+            ..loadRequest(Uri.parse(widget.baseUrl), headers: {
+              "Accept-Language": widget.locale.languageCode,
+              kHeronBrightnessKey: widget.brightness.name,
+            });
+        });
+      }
     });
+  }
+
+  @override
+  void dispose() {
+    controller = null;
+    super.dispose();
   }
 
   @override

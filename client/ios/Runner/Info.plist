@@ -25,11 +25,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-		    <key>CFBundleTypeRole</key>
-            <string>Editor</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-			    <string>$(GCP_CLIENT_ID)</string>
+				<string>$(GCP_CLIENT_ID)</string>
 			</array>
 		</dict>
 	</array>
@@ -41,8 +41,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>이 앱은 사용자의 현재 위치를 기반으로 맞춤형 서비스를 제공하기 위해 위치 정보를 사용합니다.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

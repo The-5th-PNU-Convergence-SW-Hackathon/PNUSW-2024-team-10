@@ -5,6 +5,8 @@ import 'package:heron/screens/error/error.dart';
 import 'package:heron/screens/home.dart';
 import 'package:heron/screens/info/details/details.dart';
 import 'package:flutter/material.dart';
+import 'package:heron/screens/more/policy/policy.dart';
+import 'package:heron/screens/more/terms/terms.dart';
 import 'package:heron/widgets/theme/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -64,6 +66,18 @@ final _router = GoRouter(
             }
 
             return const ErrorScreen();
+          },
+        ),
+        GoRoute(
+          path: "more/terms",
+          builder: (context, state) {
+            return const TermsScreen();
+          },
+        ),
+        GoRoute(
+          path: "more/privacy",
+          builder: (context, state) {
+            return const PrivacyScreen();
           },
         ),
       ],
