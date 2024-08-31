@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:heron/models/info/types.dart';
 import 'package:heron/widgets/chip/chip.dart';
 import 'package:heron/widgets/filter/filter.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 void showInfoFilterSheet({
   required BuildContext context,
