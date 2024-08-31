@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heron/screens/map/filter.dart';
+import 'package:heron/screens/map/widgets/filter.dart';
 import 'package:heron/widgets/chip/chip.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

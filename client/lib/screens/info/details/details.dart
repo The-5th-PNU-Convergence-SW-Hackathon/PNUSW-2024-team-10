@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heron/constants/webview.dart';
-import 'package:heron/screens/info/webview.dart';
+import 'package:heron/screens/info/widgets/webview.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:heron/widgets/button/icon.dart';
 import 'package:hugeicons/hugeicons.dart';

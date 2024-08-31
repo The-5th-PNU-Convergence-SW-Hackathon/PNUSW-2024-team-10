@@ -1,4 +1,4 @@
-import 'package:heron/screens/more/dialog.dart';
+import 'package:heron/screens/more/widgets/dialog.dart';
 import 'package:heron/widgets/list/items.dart';
 import 'package:heron/widgets/list/list.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:heron/models/courses/types.dart';
 import 'package:heron/models/map/types.dart';
-import 'package:heron/screens/courses/filter.dart';
-import 'package:heron/screens/courses/list.dart';
+import 'package:heron/screens/courses/widgets/filter.dart';
+import 'package:heron/screens/courses/widgets/list.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:heron/widgets/button/icon.dart';
 import 'package:flutter/material.dart';

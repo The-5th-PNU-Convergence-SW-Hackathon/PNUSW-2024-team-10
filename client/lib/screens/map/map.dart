@@ -1,6 +1,6 @@
-import 'package:heron/screens/map/googlemap.dart';
+import 'package:heron/screens/map/widgets/googlemap.dart';
 import 'package:flutter/material.dart';
-import 'package:heron/screens/map/overlay.dart';
+import 'package:heron/screens/map/widgets/overlay.dart';
 import 'package:heron/widgets/appbar/status.dart';
 
 class MapScreen extends StatelessWidget {

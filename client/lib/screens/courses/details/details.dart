@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:heron/models/courses/types.dart';
 import 'package:heron/models/map/types.dart';
-import 'package:heron/screens/courses/details/header.dart';
-import 'package:heron/screens/courses/details/list.dart';
-import 'package:heron/screens/courses/details/map.dart';
+import 'package:heron/screens/courses/details/widgets/header.dart';
+import 'package:heron/screens/courses/details/widgets/list.dart';
+import 'package:heron/screens/courses/details/widgets/map.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:heron/widgets/button/button.dart';
 import 'package:heron/widgets/button/icon.dart';

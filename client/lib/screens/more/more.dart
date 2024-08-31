@@ -1,11 +1,10 @@
-import 'package:heron/screens/more/app.dart';
-import 'package:heron/screens/more/etc.dart';
-import 'package:heron/screens/more/profile.dart';
-import 'package:heron/screens/more/prefs.dart';
+import 'package:heron/screens/more/widgets/app.dart';
+import 'package:heron/screens/more/widgets/etc.dart';
+import 'package:heron/screens/more/widgets/profile.dart';
+import 'package:heron/screens/more/widgets/prefs.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:heron/widgets/scroll/scroll.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
@@ -34,16 +33,11 @@ class _MoreScreenState extends State<MoreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final l10n = AppLocalizations.of(context)!;
-
     // TODO: Implement ProfileScreen
     final String name = "홍길동";
     final String email = "gildong1557@gmail.com";
     final UserPlatformType platform = UserPlatformType.google;
     final ImageProvider<Object>? image = null;
-    final int courses = 3;
-    final int missions = 12;
 
     return ScrollOffsetProvider(
       builder: (context, scrollOffset, scrollController) => Scaffold(
