@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:heron/widgets/button/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -12,8 +13,12 @@ class GoogleSignInButton extends StatelessWidget {
 
     return HeronButton(
       variant: HeronButtonVariant.outline,
-      onPressed: () {
+      onPressed: () async {
+        final result = await GoogleSignIn().signIn();
+        if (result != null) {
+          final authentication = await result.authentication;
 
+        }
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
