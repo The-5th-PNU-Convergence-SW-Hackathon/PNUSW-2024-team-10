@@ -73,9 +73,8 @@ class HeronNavigationListItem extends HeronPressableListItem {
       onPressed: onPressed,
       child: Row(
         children: [
-          child ?? const SizedBox(),
-          const Spacer(),
-          const SizedBox(width: 16.0),
+          Expanded(child: child ?? const SizedBox()),
+          const SizedBox(width: 8.0),
           HugeIcon(
             icon: HugeIcons.strokeRoundedArrowRight01,
             color: colorScheme.outline,

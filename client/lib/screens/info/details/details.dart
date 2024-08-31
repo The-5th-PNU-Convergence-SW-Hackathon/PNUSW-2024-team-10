@@ -7,6 +7,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InfoDetailsScreen extends StatefulWidget {
   final String id;
@@ -24,12 +25,13 @@ class _InfoDetailsScreenState extends State<InfoDetailsScreen> {
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context);
     final brightness = Theme.of(context).brightness;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: HeronAppBar(
           scrollOffset: scrollOffset,
           hideTitleOnTop: true,
-          title: const Text('Info'),
+          title: Text(l10n.infoArticleTitle),
           actions: [
             HeronIconButton(
               icon: const Icon(HugeIcons.strokeRoundedShare05),

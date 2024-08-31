@@ -45,7 +45,7 @@
   "navigationLabelMap": "지도",
   "navigationLabelCourses": "코스",
   "navigationLabelInfo": "정보",
-  "navigationLabelProfile": "프로필",
+  "navigationLabelMore": "메뉴",
 
   "coursesTabAll": "전체",
   "coursesTabLiked": "좋아요",
@@ -73,30 +73,27 @@
   "coursesDetailMission": "미션",
   "coursesDetailStart": "코스 시작하기",
 
-  "profileCourseCount": "코스 {count}개 완료",
-  "profileMissionCount": "미션 {count}개 완료",
-  "profileGalleryHeader": "촬영한 사진",
-  "profileGalleryEmpty": "코스를 진행하며 사진을 찍어보세요!",
+  "infoArticleTitle": "게시물",
 
-  "settingsTitle": "설정",
+  "moreProfileCompletedCourses": "완료한 코스",
+  "moreProfileGallery": "갤러리",
 
-  "settingsUserLabel": "사용자",
-  "settingsUserSignOut": "로그아웃",
-  "settingsUserSignOutConfirmation": "정말로 로그아웃하시겠습니까?",
-  "settingsUserSignOutSuccess": "로그아웃되었습니다.",
-  "settingsUserTheme": "테마 변경",
-  "settingsUserThemeSystem": "시스템 기본값",
-  "settingsUserThemeLight": "밝은 테마",
-  "settingsUserThemeDark": "어두운 테마",
-  "settingsUserLanguage": "언어 변경",
-  "settingsUserLanguageSystem": "시스템 기본값",
-  "settingsUserLanguageEnglish": "영어 (English)",
-  "settingsUserLanguageKorean": "한국어",
+  "morePreferencesLabel": "개인 설정",
+  "morePreferencesTheme": "테마",
+  "morePreferencesThemeItem": "{theme, select, light{라이트} dark{다크} other{시스템 기본값}}",
 
+  "morePreferencesLanguage": "언어",
+  "morePreferencesLanguageItem": "{language, select, en{영어 (English)} ko{한국어} other{시스템 기본값}}",
 
-  "settingsAppInfoLabel": "정보",
-  "settingsAppInfoVersion": "버전",
-  "settingsAppInfoTermsAndPolicy": "약관 및 정책",
-  "settingsAppInfoLicenses": "오픈소스 라이선스",
-  "settingsAppInfoRepository": "GitHub 저장소 보기"
+  "moreAppInfoLabel": "애플리케이션 정보",
+  "moreAppInfoVersion": "버전",
+  "moreAppInfoTerms": "이용약관",
+  "moreAppInfoPrivacy": "개인정보 처리방침",
+  "moreAppInfoLicenses": "오픈소스 라이선스",
+  "moreAppInfoRepository": "GitHub 저장소 보기",
+
+  "moreEtcSignOut": "로그아웃",
+  "moreEtcSignOutConfirmation": "정말로 로그아웃하시겠습니까?",
+  "moreEtcSignOutSuccess": "로그아웃되었습니다.",
+  "moreEtcDeleteAccount": "계정 삭제"
 }

@@ -4,7 +4,6 @@ import 'package:heron/screens/courses/details/details.dart';
 import 'package:heron/screens/error/error.dart';
 import 'package:heron/screens/home.dart';
 import 'package:heron/screens/info/details/details.dart';
-import 'package:heron/screens/profile/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:heron/widgets/theme/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,10 +65,6 @@ final _router = GoRouter(
 
             return const ErrorScreen();
           },
-        ),
-        GoRoute(
-          path: "profile/settings",
-          builder: (context, state) => const SettingsScreen(),
         ),
       ],
     ),

@@ -8,14 +8,14 @@ import 'package:package_info_plus/package_info_plus.dart';
 const String _repositoryUrl =
     "https://github.com/pnusw-hackathon/PNUSW-2024-team-10";
 
-class HeronAppInfoList extends StatefulWidget {
-  const HeronAppInfoList({super.key});
+class MoreAppInfoList extends StatefulWidget {
+  const MoreAppInfoList({super.key});
 
   @override
-  State<HeronAppInfoList> createState() => _HeronAppInfoListState();
+  State<MoreAppInfoList> createState() => _MoreAppInfoListState();
 }
 
-class _HeronAppInfoListState extends State<HeronAppInfoList> {
+class _MoreAppInfoListState extends State<MoreAppInfoList> {
   PackageInfo packageInfo = PackageInfo(
     appName: '-',
     packageName: '-',
@@ -38,31 +38,39 @@ class _HeronAppInfoListState extends State<HeronAppInfoList> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final l10n = AppLocalizations.of(context)!;
 
     return HeronListGroup(
-      header: l10n.settingsAppInfoLabel,
+      header: l10n.moreAppInfoLabel,
       children: [
         HeronListItem(
           child: Row(
             children: [
-              Text(l10n.settingsAppInfoVersion),
+              Text(l10n.moreAppInfoVersion),
               const Spacer(),
-              Text(packageInfo.version),
+              Text(
+                packageInfo.version,
+                style: TextStyle(
+                  color: colorScheme.outline,
+                ),
+              ),
             ],
           ),
         ),
         HeronNavigationListItem(
-          onPressed: () {
-
-          },
-          child: Text(l10n.settingsAppInfoTermsAndPolicy),
+          onPressed: () {},
+          child: Text(l10n.moreAppInfoTerms),
+        ),
+        HeronNavigationListItem(
+          onPressed: () {},
+          child: Text(l10n.moreAppInfoPrivacy),
         ),
         HeronNavigationListItem(
           onPressed: () {
             showLicensePage(context: context);
           },
-          child: Text(l10n.settingsAppInfoLicenses),
+          child: Text(l10n.moreAppInfoLicenses),
         ),
         HeronPressableListItem(
           onPressed: () {
@@ -72,7 +80,7 @@ class _HeronAppInfoListState extends State<HeronAppInfoList> {
             );
           },
           child: Text(
-            l10n.settingsAppInfoRepository,
+            l10n.moreAppInfoRepository,
             style: const TextStyle(color: Colors.blueAccent),
           ),
         )

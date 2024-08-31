@@ -12,7 +12,9 @@ class GoogleSignInButton extends StatelessWidget {
 
     return HeronButton(
       variant: HeronButtonVariant.outline,
-      onPressed: () {},
+      onPressed: () {
+
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

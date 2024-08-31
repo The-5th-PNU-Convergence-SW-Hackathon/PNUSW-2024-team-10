@@ -1,7 +1,7 @@
 import 'package:heron/screens/courses/courses.dart';
 import 'package:heron/screens/info/info.dart';
 import 'package:heron/screens/map/map.dart';
-import 'package:heron/screens/profile/profile.dart';
+import 'package:heron/screens/more/more.dart';
 import 'package:heron/widgets/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           MapScreen(),
           CoursesScreen(),
           InfoScreen(),
-          ProfileScreen(),
+          MoreScreen(),
         ],
       ),
       bottomNavigationBar: HeronNavigationBar(
@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: l10n.navigationLabelInfo,
           ),
           HeronNavigationBarItem(
-            icon: HugeIcons.strokeRoundedUserCircle,
-            label: l10n.navigationLabelProfile,
+            icon: HugeIcons.strokeRoundedMoreHorizontalCircle02,
+            label: l10n.navigationLabelMore,
           )
         ],
       ),

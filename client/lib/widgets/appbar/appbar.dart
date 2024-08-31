@@ -33,7 +33,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.disableBorder = false,
     this.scrollOffset = 0.0,
     this.scrollOffsetStart = 0.0,
-    this.scrollOffsetEnd = 6.0,
+    this.scrollOffsetEnd = 10.0,
   });
 
   @override
