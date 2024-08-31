@@ -86,7 +86,7 @@ class _MoreAppInfoListState extends State<MoreAppInfoList> {
           },
           child: Text(
             l10n.moreAppInfoRepository,
-            style: const TextStyle(color: Colors.blueAccent),
+            style: TextStyle(color: colorScheme.primary),
           ),
         )
       ],
