@@ -1,26 +1,46 @@
+import 'package:heron/models/auth/types.dart';
 import 'package:heron/widgets/list/items.dart';
 import 'package:heron/widgets/list/list.dart';
 import 'package:heron/widgets/profile/pic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-enum UserPlatformType {
-  google,
-  apple,
-}
+import 'package:heron/widgets/signin/signin.dart';
+import 'package:heron/widgets/theme/prefs.dart';
 
 class MoreUserProfile extends StatelessWidget {
-  final String name;
-  final String email;
-  final UserPlatformType platform;
-  final ImageProvider<Object>? image;
+  const MoreUserProfile({super.key});
 
-  const MoreUserProfile({
+  @override
+  Widget build(BuildContext context) {
+    final user = getUser(context);
+
+    if (user != null) {
+      return MoreUserProfileHasUser(user: user);
+    } else {
+      return Column(
+        children: [
+          HeronListGroup(
+            children: [
+              HeronNavigationListItem(
+                onPressed: () async {
+                  showSignInSheet(context: context);
+                },
+                child: Text(AppLocalizations.of(context)!.moreProfileSignIn),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+  }
+}
+
+class MoreUserProfileHasUser extends StatelessWidget {
+  final UserInfo user;
+
+  const MoreUserProfileHasUser({
     super.key,
-    required this.name,
-    required this.email,
-    required this.platform,
-    this.image,
+    required this.user,
   });
 
   @override
@@ -34,20 +54,20 @@ class MoreUserProfile extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 26.0, vertical: 8.0),
           child: Row(
             children: [
-              HeronProfilePic(image, size: 54.0),
+              HeronAvatar(user.avatar, size: 54.0),
               const SizedBox(width: 16.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    user.name,
                     style: Theme.of(context).textTheme.headlineSmall,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4.0),
                   Text(
-                    email,
+                    user.email,
                     style: TextStyle(color: colorScheme.outline),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -86,30 +106,26 @@ class MoreUserProfile extends StatelessWidget {
 }
 
 class MoreUserProfileSmall extends StatelessWidget {
-  final String name;
-  final ImageProvider<Object>? image;
-
-  const MoreUserProfileSmall({
-    super.key,
-    required this.name,
-    this.image,
-  });
+  const MoreUserProfileSmall({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final user = getUser(context);
 
-    return Row(
-      children: [
-        HeronProfilePic(image, size: 28.0),
-        const SizedBox(width: 10.0),
-        Text(
-          name,
-          style: textTheme.titleLarge,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
-    );
+    return user != null
+        ? Row(
+            children: [
+              HeronAvatar(user.avatar, size: 28.0),
+              const SizedBox(width: 10.0),
+              Text(
+                user.name,
+                style: textTheme.titleLarge,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          )
+        : Text(AppLocalizations.of(context)!.navigationLabelMore);
   }
 }

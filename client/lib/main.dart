@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:heron/constants/preferences.dart';
+import 'package:heron/models/auth/types.dart';
+import 'package:heron/models/user.dart';
 import 'package:heron/screens/courses/details/details.dart';
 import 'package:heron/screens/error/error.dart';
 import 'package:heron/screens/home.dart';
@@ -16,11 +18,13 @@ void main() async {
 
   final languageCode = prefs.getString(kPrefLanguage);
   final themeModeCode = prefs.getString(kPrefThemeMode);
+  final user = await apiUserGet(null);
 
   runApp(
     MyApp(
       languageCode: languageCode,
       themeModeCode: themeModeCode,
+      user: user,
     ),
   );
 }
@@ -28,8 +32,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String? languageCode;
   final String? themeModeCode;
+  final UserInfo? user;
 
-  const MyApp({super.key, this.languageCode, this.themeModeCode});
+  const MyApp({super.key, this.languageCode, this.themeModeCode, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +45,7 @@ class MyApp extends StatelessWidget {
         (e) => e.toString() == themeModeCode,
         orElse: () => ThemeMode.system,
       ),
+      user: user,
     );
   }
 }

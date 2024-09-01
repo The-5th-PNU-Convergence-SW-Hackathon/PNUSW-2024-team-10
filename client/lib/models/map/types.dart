@@ -28,6 +28,7 @@ enum HeronPlaceZoneType {
   }
 }
 
+
 enum HeronFoodType {
   vegan(HeronLabelColorType.green, HugeIcons.strokeRoundedVegetarianFood),
   blueribbon(HeronLabelColorType.blue, HugeIcons.strokeRoundedBowTie),

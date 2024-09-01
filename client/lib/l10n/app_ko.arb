@@ -75,6 +75,7 @@
 
   "infoArticleTitle": "게시물",
 
+  "moreProfileSignIn": "로그인",
   "moreProfileCompletedCourses": "완료한 코스",
   "moreProfileGallery": "갤러리",
 
@@ -93,7 +94,7 @@
   "moreAppInfoRepository": "GitHub 저장소 보기",
 
   "moreEtcSignOut": "로그아웃",
-  "moreEtcSignOutConfirmation": "정말로 로그아웃하시겠습니까?",
+  "moreEtcSignOutMessage": "정말로 로그아웃하시겠습니까?",
   "moreEtcSignOutSuccess": "로그아웃되었습니다.",
   "moreEtcDeleteAccount": "계정 삭제"
 }

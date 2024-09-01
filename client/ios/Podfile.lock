@@ -1,4 +1,6 @@
 PODS:
+  - app_set_id (1.2.0):
+    - Flutter
   - AppAuth (1.7.5):
     - AppAuth/Core (= 1.7.5)
     - AppAuth/ExternalUserAgent (= 1.7.5)
@@ -58,6 +60,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - app_set_id (from `.symlinks/plugins/app_set_id/ios`)
   - Flutter (from `Flutter`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -81,6 +84,8 @@ SPEC REPOS:
     - Toast
 
 EXTERNAL SOURCES:
+  app_set_id:
+    :path: ".symlinks/plugins/app_set_id/ios"
   Flutter:
     :path: Flutter
   flutter_secure_storage:
@@ -105,6 +110,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
+  app_set_id: a4d12ebbc7915f987b4a04983b4c0104c64d5e02
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12

@@ -5,6 +5,7 @@ import 'package:heron/screens/more/widgets/prefs.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:heron/widgets/scroll/scroll.dart';
+import 'package:heron/widgets/theme/prefs.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
@@ -16,23 +17,18 @@ class MoreScreen extends StatefulWidget {
 class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
-    // TODO: Implement ProfileScreen
-    final String name = "홍길동";
-    final String email = "gildong1557@gmail.com";
-    final UserPlatformType platform = UserPlatformType.google;
-    final ImageProvider<Object>? image = null;
+    final user = getUser(context);
 
     return ScrollOffsetProvider(
       builder: (context, scrollOffset, scrollController) => Scaffold(
         appBar: HeronAppBar(
           hasBackButton: false,
           scrollOffset: scrollOffset,
+          largeTitle: user == null,
           title: Opacity(
-            opacity: ((scrollOffset - 52) / 12).clamp(0.0, 1.0),
-            child: MoreUserProfileSmall(
-              name: name,
-              image: image,
-            ),
+            opacity:
+                user != null ? ((scrollOffset - 52) / 12).clamp(0.0, 1.0) : 1.0,
+            child: const MoreUserProfileSmall(),
           ),
           // actions: [
           // 추후 알림 기능 구현 시 사용
@@ -44,21 +40,16 @@ class _MoreScreenState extends State<MoreScreen> {
         ),
         body: CustomScrollView(
           controller: scrollController,
-          slivers: [
+          slivers: const [
             SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  MoreUserProfile(
-                    name: name,
-                    email: email,
-                    platform: platform,
-                    image: image,
-                  ),
+                  MoreUserProfile(),
                 ],
               ),
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: Column(
                 children: [
                   MoreUserSettingsList(),

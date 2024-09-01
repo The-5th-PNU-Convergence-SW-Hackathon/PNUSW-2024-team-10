@@ -75,6 +75,7 @@
 
   "infoArticleTitle": "Article",
 
+  "moreProfileSignIn": "Sign In",
   "moreProfileCompletedCourses": "Completed Courses",
   "moreProfileGallery": "Gallery",
 
@@ -110,7 +111,7 @@
   "moreAppInfoRepository": "View GitHub Repository",
 
   "moreEtcSignOut": "Sign Out",
-  "moreEtcSignOutConfirmation": "Are you sure you want to sign out?",
+  "moreEtcSignOutMessage": "Are you sure you want to sign out?",
   "moreEtcSignOutSuccess": "Signed out successfully",
   "moreEtcDeleteAccount": "Delete Account"
 

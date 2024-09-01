@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HeronProfilePic extends StatelessWidget {
-  final ImageProvider<Object>? image;
+class HeronAvatar extends StatelessWidget {
+  final String? imageSrc;
   final double size;
 
-  const HeronProfilePic(
-    this.image, {
+  const HeronAvatar(
+    this.imageSrc, {
     super.key,
     this.size = 24.0,
   });
@@ -21,12 +21,13 @@ class HeronProfilePic extends StatelessWidget {
         color: Colors.grey,
         borderRadius: BorderRadius.circular(40.0),
         image: DecorationImage(
-          image: image ??
-              AssetImage(
-                brightness == Brightness.dark
-                    ? "assets/images/profile_pic_dark.png"
-                    : "assets/images/profile_pic.png",
-              ),
+          image: imageSrc != null
+              ? NetworkImage(imageSrc!)
+              : AssetImage(
+                  brightness == Brightness.dark
+                      ? "assets/images/profile_pic_dark.png"
+                      : "assets/images/profile_pic.png",
+                ),
         ),
       ),
     );
