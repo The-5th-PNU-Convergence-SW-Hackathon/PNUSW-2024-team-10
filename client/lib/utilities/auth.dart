@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:heron/constants/preferences.dart';
 import 'package:heron/constants/request.dart';
 import 'package:heron/utilities/device_id.dart';
 import 'package:heron/widgets/theme/prefs.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:io';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 const secureStorage = FlutterSecureStorage();
 
@@ -14,20 +17,12 @@ Future<Dio> getDioWithAccessToken(BuildContext? context) async {
 
   dio.interceptors.add(InterceptorsWrapper(
     onRequest: (options, handler) async {
-      // Get access token from secure storage
       String? accessToken = await secureStorage.read(key: kAccessTokenKey);
+
       if (accessToken != null) {
         options.headers['Authorization'] = '$kBearer $accessToken';
       }
       handler.next(options);
-    },
-    onResponse: (response, handler) async {
-      // Check for new token in response headers and update secure storage
-      if (response.headers[kHeaderNewToken] != null) {
-        String newToken = response.headers[kHeaderNewToken]!.first;
-        await secureStorage.write(key: kAccessTokenKey, value: newToken);
-      }
-      handler.next(response);
     },
     onError: (DioException e, handler) async {
       // Handle 401 Unauthorized by refreshing the token
@@ -72,6 +67,10 @@ Future<Dio> getDio() async {
   final deviceId = await getDeviceId();
   final packageInfo = await PackageInfo.fromPlatform();
 
+  final preferences = await SharedPreferences.getInstance();
+  final language = preferences.getString(kPrefLanguage);
+  final locale = language != null ? Locale(language) : null;
+
   final options = BaseOptions(
     baseUrl: kApiBaseURL,
     headers: {
@@ -79,6 +78,7 @@ Future<Dio> getDio() async {
       'User-Agent':
           '${packageInfo.appName}/${packageInfo.version} (${packageInfo.packageName}; ${Platform.operatingSystem})',
       'Device-Id': deviceId,
+      'Accept-Language': locale?.languageCode
     },
   );
 

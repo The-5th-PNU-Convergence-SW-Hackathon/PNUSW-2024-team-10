@@ -239,7 +239,13 @@ class SignOutConfirmDialog extends StatelessWidget {
             handleLogout(context);
             Navigator.pop(context);
           },
-          child: Text(l10n.commonConfirmationConfirm),
+          style: ButtonStyle(
+            overlayColor: WidgetStateProperty.all(
+                Theme.of(context).colorScheme.error.withOpacity(0.1)),
+            foregroundColor:
+                WidgetStateProperty.all(Theme.of(context).colorScheme.error),
+          ),
+          child: Text(l10n.moreEtcSignOut),
         ),
       ],
     );
