@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heron/constants/preferences.dart';
 import 'package:heron/models/auth/types.dart';
@@ -18,7 +19,14 @@ void main() async {
 
   final languageCode = prefs.getString(kPrefLanguage);
   final themeModeCode = prefs.getString(kPrefThemeMode);
-  final user = await apiUserGet(null);
+
+  UserInfo? user;
+
+  try {
+    user = await apiUserGet(null);
+  } catch (e) {
+    await const FlutterSecureStorage().deleteAll();
+  }
 
   runApp(
     MyApp(

@@ -239,7 +239,7 @@ class SignOutConfirmDialog extends StatelessWidget {
             handleLogout(context);
             Navigator.pop(context);
           },
-          child: Text(l10n.commonConfirmationApply),
+          child: Text(l10n.commonConfirmationConfirm),
         ),
       ],
     );

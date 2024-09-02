@@ -6,8 +6,15 @@ import 'package:heron/widgets/button/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:heron/widgets/theme/prefs.dart';
 
-class GoogleSignInButton extends StatelessWidget {
+class GoogleSignInButton extends StatefulWidget {
   const GoogleSignInButton({super.key});
+
+  @override
+  State<GoogleSignInButton> createState() => _GoogleSignInButtonState();
+}
+
+class _GoogleSignInButtonState extends State<GoogleSignInButton> {
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +22,13 @@ class GoogleSignInButton extends StatelessWidget {
     final googleSignIn = GoogleSignIn(scopes: ["email", "profile"]);
 
     return HeronButton(
+      isLoading: _isLoading,
       variant: HeronButtonVariant.outline,
       onPressed: () async {
+        setState(() {
+          _isLoading = true;
+        });
+
         final result = await googleSignIn.signIn();
         if (result != null) {
           final idToken = (await result.authentication).idToken;
@@ -32,6 +44,10 @@ class GoogleSignInButton extends StatelessWidget {
             }
           }
         }
+
+        setState(() {
+          _isLoading = false;
+        });
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
