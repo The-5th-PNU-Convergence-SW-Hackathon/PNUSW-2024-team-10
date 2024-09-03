@@ -7,10 +7,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void showPlacesFilterSheet({
   required BuildContext context,
   required void Function(
-    List<HeronTourSpotThemeType> themes,
+    List<HeronTourSpotTheme> themes,
     List<HeronFoodType> foodTypes,
   ) onApply,
-  List<HeronTourSpotThemeType>? initialThemes,
+  List<HeronTourSpotTheme>? initialThemes,
   List<HeronFoodType>? initialFoodTypes,
 }) {
   final GlobalKey<_FilterSheetBodyState> filterSheetBodyKey =
@@ -36,7 +36,7 @@ void showPlacesFilterSheet({
 }
 
 class FilterSheetBody extends StatefulWidget {
-  final List<HeronTourSpotThemeType>? initialThemes;
+  final List<HeronTourSpotTheme>? initialThemes;
   final List<HeronFoodType>? initialFoodTypes;
 
   const FilterSheetBody({
@@ -50,19 +50,19 @@ class FilterSheetBody extends StatefulWidget {
 }
 
 class _FilterSheetBodyState extends State<FilterSheetBody> {
-  List<HeronTourSpotThemeType> selectedThemes = [];
+  List<HeronTourSpotTheme> selectedThemes = [];
   List<HeronFoodType> selectedFoodTypes = [];
 
   @override
   void initState() {
     super.initState();
-    selectedThemes = widget.initialThemes ?? HeronTourSpotThemeType.values;
+    selectedThemes = widget.initialThemes ?? HeronTourSpotTheme.values;
     selectedFoodTypes = widget.initialFoodTypes ?? HeronFoodType.values;
   }
 
   void reset() {
     setState(() {
-      selectedThemes = HeronTourSpotThemeType.values;
+      selectedThemes = HeronTourSpotTheme.values;
       selectedFoodTypes = HeronFoodType.values;
     });
   }
@@ -77,10 +77,10 @@ class _FilterSheetBodyState extends State<FilterSheetBody> {
       children: [
         HeronFilterSelector(
           title: l10n.placeFilterTheme,
-          items: HeronTourSpotThemeType.values,
+          items: HeronTourSpotTheme.values,
           onSelectAll: () {
             setState(() {
-              selectedThemes = List.from(HeronTourSpotThemeType.values);
+              selectedThemes = List.from(HeronTourSpotTheme.values);
             });
           },
           onDeselectAll: () {

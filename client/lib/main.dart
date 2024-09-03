@@ -66,9 +66,15 @@ final _router = GoRouter(
       routes: [
         GoRoute(
           path: "courses/:id",
-          builder: (context, state) => CourseDetailsScreen(
-            state.pathParameters["id"],
-          ),
+          builder: (context, state) {
+            final id = state.pathParameters["id"];
+
+            if (id != null) {
+              return CourseDetailsScreen(id);
+            }
+
+            return const ErrorScreen();
+          },
         ),
         GoRoute(
           path: "info/:id",

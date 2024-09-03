@@ -52,25 +52,25 @@ enum HeronCourseState {
   }
 }
 
-enum HeronCourseDurationType {
+enum HeronCourseDuration {
   oneday,
   overnight;
 
   String getDisplayText(AppLocalizations l10n) {
     switch (this) {
-      case HeronCourseDurationType.oneday:
+      case HeronCourseDuration.oneday:
         return l10n.coursesDurationOneDay;
-      case HeronCourseDurationType.overnight:
+      case HeronCourseDuration.overnight:
         return l10n.coursesDurationOverNight;
     }
   }
 
-  factory HeronCourseDurationType.fromDBString(String value) {
+  factory HeronCourseDuration.fromDBString(String value) {
     switch (value) {
       case 'ONEDAY':
-        return HeronCourseDurationType.oneday;
+        return HeronCourseDuration.oneday;
       case 'OVERNIGHT':
-        return HeronCourseDurationType.overnight;
+        return HeronCourseDuration.overnight;
       default:
         throw Exception('Unknown HeronCourseDurationType: $value');
     }
@@ -84,7 +84,7 @@ class HeronCourseSummary implements HeronResponse {
   final List<HeronZoneSummary> zones;
   final HeronCourseState? state;
   final bool liked;
-  final HeronCourseDurationType duration;
+  final HeronCourseDuration duration;
   final String landmark;
 
   const HeronCourseSummary({
@@ -111,8 +111,106 @@ class HeronCourseSummary implements HeronResponse {
           ? HeronCourseState.fromDBString(data['state'])
           : null,
       liked: data['liked'] ?? false,
-      duration: HeronCourseDurationType.fromDBString(data['duration']),
+      duration: HeronCourseDuration.fromDBString(data['duration']),
       landmark: data['landmark'],
+    );
+  }
+}
+
+class HeronCourseMission implements HeronResponse {
+  final int order;
+  final String placeName;
+  final String placeId;
+  final String description;
+  final String time;
+  final String? message;
+  final String? completion;
+
+  const HeronCourseMission({
+    required this.order,
+    required this.placeName,
+    required this.placeId,
+    required this.description,
+    required this.time,
+    required this.message,
+    this.completion,
+  });
+
+  @override
+  factory HeronCourseMission.fromJson(Map<String, dynamic> data) {
+    return HeronCourseMission(
+      order: data['order'],
+      placeName: data['place']['name'],
+      placeId: data['place']['id'],
+      description: data['description'],
+      time: data['time'],
+      message: data['message'],
+      completion: data['completion'],
+    );
+  }
+
+  bool get isCompleted => completion != null;
+}
+
+class HeronCourseDetails implements HeronResponse {
+  final String name;
+  final HeronCourseDuration duration;
+  final String imageId;
+  final List<String> zones;
+  final List<HeronTourSpotTheme> themes;
+  final HeronCourseState? state;
+  final bool liked;
+  final bool startable;
+  final List<HeronCourseMission> missions;
+
+  const HeronCourseDetails({
+    required this.name,
+    required this.duration,
+    required this.imageId,
+    required this.zones,
+    required this.themes,
+    this.state,
+    required this.liked,
+    required this.startable,
+    required this.missions,
+  });
+
+  @override
+  factory HeronCourseDetails.fromJson(Map<String, dynamic> data) {
+    return HeronCourseDetails(
+      name: data['name'],
+      duration: HeronCourseDuration.fromDBString(data['duration']),
+      imageId: data['imageId'],
+      zones: List<String>.from(data['zones']),
+      themes: (data['themes'] as List)
+          .map((theme) => HeronTourSpotTheme.fromDBString(theme))
+          .toList(),
+      state: data['state'] != null
+          ? HeronCourseState.fromDBString(data['state'])
+          : null,
+      liked: data['liked'] ?? false,
+      startable: data['startable'] ?? false,
+      missions: (data['missions'] as List)
+          .map((mission) => HeronCourseMission.fromJson(mission))
+          .toList(),
+    );
+  }
+}
+
+class HeronCourseMissionCompletion implements HeronResponse {
+  final String imageId;
+  final bool isLast;
+
+  const HeronCourseMissionCompletion({
+    required this.imageId,
+    required this.isLast,
+  });
+
+  @override
+  factory HeronCourseMissionCompletion.fromJson(Map<String, dynamic> data) {
+    return HeronCourseMissionCompletion(
+      imageId: data['imageId'],
+      isLast: data['isLast'],
     );
   }
 }

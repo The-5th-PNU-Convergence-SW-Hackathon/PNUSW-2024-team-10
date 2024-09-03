@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:heron/constants/webview.dart';
 import 'package:heron/models/info/types.dart';
 import 'package:heron/screens/info/widgets/filter.dart';
-import 'package:heron/widgets/webview/webview.dart';
+import 'package:heron/widgets/other/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

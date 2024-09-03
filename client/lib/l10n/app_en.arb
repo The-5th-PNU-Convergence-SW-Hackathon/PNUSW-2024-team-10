@@ -8,6 +8,8 @@
   "commonConfirmationConfirm": "Confirm",
   "commonConfirmationApply": "Apply",
   "commonConfirmationCancel": "Cancel",
+  "commonConfirmationStart": "Start",
+  "commonConfirmationAbort": "Abort",
 
   "commonEmpty": "Empty",
 
@@ -32,6 +34,7 @@
   "placeZoneGijang": "Gijang",
 
   "placeMore": "more",
+  "placeImageAuthor": "Photo by",
   "placeCopiedMessage": "Copied to clipboard!",
 
   "tourSpotThemeHistory": "History",
@@ -44,6 +47,14 @@
   "foodHalal": "Halal",
   "foodMichelin": "Michelin Guide",
   "foodSingle": "Single Seat",
+
+  "cuisineCountryKorean": "Korean",
+  "cuisineCountryChinese": "Chinese",
+  "cuisineCountryJapanese": "Japanese",
+  "cuisineCountryWestern": "Western",
+  "cuisineCountryAsian": "Asian",
+  "cuisineCountryFusion": "Fusion",
+  "cuisineCountryEtc": "Other",
 
   "navigationLabelMap": "Map",
   "navigationLabelCourses": "Courses",
@@ -75,6 +86,11 @@
   "coursesDetailSuggestTime": "Suggested Time",
   "coursesDetailMission": "Mission",
   "coursesDetailStart": "Start This Course",
+  "coursesDetailStartMessage": "Are you ready to start this course?",
+  "coursesDetailStartAlreadyExists": "another course in progress",
+  "coursesDetailProgress": "Progress",
+  "coursesDetailAbort": "Abort",
+  "coursesDetailAbortMessage": "Are you sure you want to abort this course? You cannot restart an aborted course.",
 
   "infoArticleTitle": "Article",
 

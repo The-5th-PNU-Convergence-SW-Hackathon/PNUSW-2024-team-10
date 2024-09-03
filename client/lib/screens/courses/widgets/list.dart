@@ -10,6 +10,8 @@ import 'package:heron/widgets/list/list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:collection/collection.dart';
 import 'package:heron/widgets/other/empty.dart';
+import 'package:heron/widgets/other/future.dart';
+import 'package:heron/widgets/other/image.dart';
 
 class CourseListAll extends StatelessWidget {
   final List<HeronCourseSummary> list;
@@ -112,7 +114,7 @@ class CourseListItem extends HeronListItem {
   final String id;
   final String name;
   final List<HeronZoneSummary> zones;
-  final HeronCourseDurationType duration;
+  final HeronCourseDuration duration;
   final HeronCourseState? state;
   final bool liked;
   final String imageId;
@@ -135,10 +137,12 @@ class CourseListItem extends HeronListItem {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     final l10n = AppLocalizations.of(context)!;
+    final refetch = getRefetch(context);
 
     return HeronPressableListItem(
-      onPressed: () {
-        context.go('/courses/$id');
+      onPressed: () async {
+        await context.push('/courses/$id');
+        refetch();
       },
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -151,11 +155,10 @@ class CourseListItem extends HeronListItem {
                 borderRadius: BorderRadius.circular(3.0),
                 child: Container(
                   color: colorScheme.surfaceContainerHigh,
-                  child: Image.network(
-                    "$kThumbBaseURL/$imageId",
+                  child: HeronFadeInImage(
                     width: 100.0,
                     height: 100.0,
-                    fit: BoxFit.cover,
+                    "$kThumbBaseURL/$imageId",
                   ),
                 ),
               ),
@@ -193,12 +196,12 @@ class CourseListItem extends HeronListItem {
                           if (state == HeronCourseState.inProgress)
                             const HeronCourseStatusLabel(
                                 HeronCourseStateLabelType.now)
-                          else if (liked)
-                            const HeronCourseStatusLabel(
-                                HeronCourseStateLabelType.liked)
                           else if (state == HeronCourseState.done)
                             const HeronCourseStatusLabel(
                                 HeronCourseStateLabelType.done)
+                          else if (liked)
+                            const HeronCourseStatusLabel(
+                                HeronCourseStateLabelType.liked)
                         ],
                       ),
                     ],

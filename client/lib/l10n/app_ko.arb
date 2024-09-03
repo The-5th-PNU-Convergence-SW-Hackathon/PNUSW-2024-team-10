@@ -8,6 +8,8 @@
   "commonConfirmationConfirm": "확인",
   "commonConfirmationApply": "적용",
   "commonConfirmationCancel": "취소",
+  "commonConfirmationStart": "시작",
+  "commonConfirmationAbort": "중단",
 
   "commonFilterTitle": "필터",
   "commonFilterApply": "적용",
@@ -32,6 +34,7 @@
   "placeZoneGijang": "기장",
 
   "placeMore": "더보기",
+  "placeImageAuthor": "사진 출처:",
   "placeCopiedMessage": "클립보드에 복사하였습니다!",
 
   "tourSpotThemeHistory": "역사",
@@ -44,6 +47,14 @@
   "foodHalal": "할랄",
   "foodMichelin": "미쉐린 가이드",
   "foodSingle": "1인석",
+
+  "cuisineCountryKorean": "한식",
+  "cuisineCountryChinese": "중식",
+  "cuisineCountryJapanese": "일식",
+  "cuisineCountryWestern": "양식",
+  "cuisineCountryAsian": "아시안",
+  "cuisineCountryFusion": "퓨전",
+  "cuisineCountryEtc": "기타",
 
   "navigationLabelMap": "지도",
   "navigationLabelCourses": "코스",
@@ -75,6 +86,11 @@
   "coursesDetailSuggestTime": "진행 시각",
   "coursesDetailMission": "미션",
   "coursesDetailStart": "코스 시작하기",
+  "coursesDetailStartMessage": "코스를 시작하시겠습니까?",
+  "coursesDetailStartAlreadyExists": "진행 중인 코스가 있습니다.",
+  "coursesDetailProgress": "진행도",
+  "coursesDetailAbort": "중단",
+  "coursesDetailAbortMessage": "진행 중인 코스를 중단하시겠습니까? 중단된 코스는 다시 시작할 수 없습니다.",
 
   "infoArticleTitle": "게시물",
 

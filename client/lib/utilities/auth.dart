@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:heron/constants/preferences.dart';
 import 'package:heron/constants/request.dart';
+import 'package:heron/models/auth/types.dart';
 import 'package:heron/utilities/device_id.dart';
 import 'package:heron/widgets/theme/prefs.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -32,9 +33,6 @@ Future<Dio> getDioWithAccessToken(BuildContext? context) async {
           try {
             final newToken = await refreshAccessToken();
             if (newToken != null) {
-              await secureStorage.write(key: kAccessTokenKey, value: newToken);
-
-              // Retry the failed request with the new access token
               e.requestOptions.headers['Authorization'] = '$kBearer $newToken';
               final cloneReq = await dio.request(
                 e.requestOptions.path,
@@ -110,7 +108,9 @@ Future<String?> refreshAccessToken() async {
     );
 
     if (response.statusCode == 200) {
-      return response.data[kAccessTokenKey];
+      final tokens = Tokens.parse(response.data, response.headers.map);
+      await saveTokens(tokens.accessToken, tokens.refreshToken);
+      return tokens.accessToken;
     } else {
       return null;
     }

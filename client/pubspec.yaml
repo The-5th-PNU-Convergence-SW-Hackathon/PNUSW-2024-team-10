@@ -55,6 +55,7 @@ dependencies:
   provider: ^6.1.2
   sign_in_with_apple: ^6.1.2
   collection: ^1.18.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -101,3 +102,6 @@ flutter:
        - asset: assets/fonts/Pretendard-Bold.otf
        - asset: assets/fonts/Pretendard-ExtraBold.otf
        - asset: assets/fonts/Pretendard-Black.otf
+   - family: HeronIcons
+     fonts:
+      - asset: assets/fonts/HeronIcons.ttf

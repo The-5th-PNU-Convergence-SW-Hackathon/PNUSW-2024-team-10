@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heron/screens/map/widgets/filter.dart';
 import 'package:heron/widgets/chip/chip.dart';
+import 'package:heron/widgets/theme/icon.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -61,7 +62,7 @@ class MapFilterOverlay extends StatelessWidget {
                 selected: false,
                 iconSize: 24.0,
                 onSelect: (selected) {},
-                icon: HugeIcons.strokeRoundedFavourite,
+                icon: HeronIcons.heartStroke,
                 height: 50.0,
                 cornerRadius: 8.0,
                 padding: const EdgeInsets.symmetric(horizontal: 13.0),

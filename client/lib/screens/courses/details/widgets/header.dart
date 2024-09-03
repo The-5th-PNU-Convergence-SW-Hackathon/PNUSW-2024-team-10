@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:heron/constants/request.dart';
 import 'package:heron/models/courses/types.dart';
 import 'package:heron/models/map/types.dart';
 import 'package:heron/widgets/label/label.dart';
 import 'package:heron/widgets/label/spot.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:heron/widgets/other/image.dart';
 
 class CourseDetailsHeader extends StatelessWidget {
   final String title;
-  final HeronCourseDurationType duration;
-  final List<HeronPlaceZoneType> zones;
-  final String? imageSrc;
-  final List<HeronTourSpotThemeType> themes;
+  final HeronCourseDuration duration;
+  final List<String> zones;
+  final String imageId;
+  final List<HeronTourSpotTheme> themes;
 
   const CourseDetailsHeader({
     super.key,
     required this.title,
     required this.duration,
     required this.zones,
-    required this.imageSrc,
+    required this.imageId,
     required this.themes,
   });
 
@@ -40,7 +42,7 @@ class CourseDetailsHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: RichText(
                   text: TextSpan(
                     children: [
@@ -49,9 +51,14 @@ class CourseDetailsHeader extends StatelessWidget {
                         style: textTheme.headlineSmall,
                       ),
                       WidgetSpan(
-                        child: HeronLabel(
-                          child: Text(
-                            HeronCourseDurationType.oneday.getDisplayText(l10n).toUpperCase(),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 6.73),
+                          child: HeronLabel(
+                            child: Text(
+                              HeronCourseDuration.oneday
+                                  .getDisplayText(l10n)
+                                  .toUpperCase(),
+                            ),
                           ),
                         ),
                       ),
@@ -60,20 +67,15 @@ class CourseDetailsHeader extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16.0),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6.0),
-                child: Container(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: SizedBox(
                   width: double.infinity,
                   height: (diviceWidth - 32) * (9 / 16),
-                  color: colorScheme.surfaceContainerHigh,
-                  child: imageSrc != null
-                      ? Image.network(
-                          imageSrc!,
-                          width: double.infinity,
-                          height: (diviceWidth - 32) * (9 / 16),
-                          fit: BoxFit.cover,
-                        )
-                      : null,
+                  child: HeronFadeInImage(
+                    borderRadius: BorderRadius.circular(6.0),
+                    "$kImageBaseURL/$imageId",
+                  ),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -84,7 +86,7 @@ class CourseDetailsHeader extends StatelessWidget {
                   runSpacing: 8.0,
                   children: [
                     Text(
-                      "${zones.map((zone) => zone.getDisplayText(l10n)).join(', ')} ",
+                      "${zones.join(', ')} ",
                       style: textTheme.bodyMedium!.copyWith(
                         color: colorScheme.outline,
                         fontWeight: FontWeight.w600,

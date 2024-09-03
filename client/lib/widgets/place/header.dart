@@ -1,24 +1,23 @@
 import 'package:float_column/float_column.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:heron/widgets/button/icon.dart';
-import 'package:hugeicons/hugeicons.dart';
+import 'package:heron/widgets/button/like.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class HeronPlaceSheetHeader extends StatelessWidget {
   final String name;
   final String address;
-  final String placeId;
-  final bool isFavourite;
-  final void Function(bool) onFavourite;
+  final String googleId;
+  final bool liked;
+  final String likeEndpoint;
 
   const HeronPlaceSheetHeader({
     super.key,
     required this.name,
     required this.address,
-    required this.placeId,
-    required this.isFavourite,
-    required this.onFavourite,
+    required this.googleId,
+    required this.liked,
+    required this.likeEndpoint,
   });
 
   @override
@@ -30,7 +29,7 @@ class HeronPlaceSheetHeader extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         launchUrlString(
-          "https://www.google.com/maps/search/?api=1&query=$address&query_place_id=$placeId",
+          "https://www.google.com/maps/search/?api=1&query=$address&query_place_id=$googleId",
           mode: LaunchMode.externalApplication,
         );
       },
@@ -39,10 +38,7 @@ class HeronPlaceSheetHeader extends StatelessWidget {
           Floatable(
             padding: const EdgeInsets.only(right: 10.0),
             float: FCFloat.right,
-            child: HeronIconButton(
-              icon: const Icon(HugeIcons.strokeRoundedFavourite),
-              onPressed: () {},
-            ),
+            child: HeronStatefulLikeButton(initialIsLiked: liked, likeEndpoint: likeEndpoint),
           ),
           WrappableText(
             padding: const EdgeInsets.only(
@@ -59,18 +55,21 @@ class HeronPlaceSheetHeader extends StatelessWidget {
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: colorScheme.primary,
-                          width: .33,
+                    padding: const EdgeInsets.symmetric(vertical: 1.14),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: colorScheme.primary,
+                            width: .33,
+                          ),
                         ),
                       ),
-                    ),
-                    child: Text(
-                      l10n.placeMore,
-                      style: textTheme.labelLarge!.copyWith(
-                        color: colorScheme.primary,
+                      child: Text(
+                        l10n.placeMore,
+                        style: textTheme.labelLarge!.copyWith(
+                          color: colorScheme.primary,
+                        ),
                       ),
                     ),
                   ),
