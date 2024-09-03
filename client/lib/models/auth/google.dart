@@ -18,11 +18,7 @@ Future<bool> apiAuthGoogleGet(String idToken) async {
   final data = response.data;
   final headers = response.headers.map;
 
-  final tokens = parseTokens(data, headers);
-  if (tokens == null) {
-    return false;
-  }
-
+  final tokens = Tokens.parse(data, headers);
   await saveTokens(tokens.accessToken, tokens.refreshToken);
   return true;
 }

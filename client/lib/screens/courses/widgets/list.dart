@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heron/constants/request.dart';
 import 'package:heron/models/courses/types.dart';
 import 'package:heron/models/map/types.dart';
 import 'package:heron/widgets/label/label.dart';
@@ -7,9 +8,11 @@ import 'package:heron/widgets/label/course.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:heron/widgets/list/list.dart';
 import 'package:go_router/go_router.dart';
+import 'package:collection/collection.dart';
+import 'package:heron/widgets/other/empty.dart';
 
 class CourseListAll extends StatelessWidget {
-  final List<CourseListItem> list;
+  final List<HeronCourseSummary> list;
 
   const CourseListAll(this.list, {super.key});
 
@@ -17,102 +20,113 @@ class CourseListAll extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 40.0),
-      child: Column(
-        children: [
-          if (list.any((item) => item.status == HeronCourseStatusType.now))
-            HeronListGroup(
-              labelIndent: 10.0,
-              dividerIndent: 0.0,
-              header: l10n.coursesListHeaderNow,
+    final activeItem = list
+        .firstWhereOrNull((item) => item.state == HeronCourseState.inProgress);
+
+    return list.isNotEmpty
+        ? SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 40.0),
+            child: Column(
               children: [
-                for (final item in list)
-                  if (item.status == HeronCourseStatusType.now) item,
+                if (activeItem != null)
+                  HeronListGroup(
+                    labelIndent: 10.0,
+                    dividerIndent: 0.0,
+                    header: l10n.coursesListHeaderNow,
+                    children: [
+                      CourseListItem(
+                        id: activeItem.id,
+                        name: activeItem.name,
+                        zones: activeItem.zones,
+                        duration: activeItem.duration,
+                        state: activeItem.state,
+                        liked: activeItem.liked,
+                        imageId: activeItem.imageId,
+                        landmark: activeItem.landmark,
+                      )
+                    ],
+                  ),
+                HeronListGroup(
+                  labelIndent: 10.0,
+                  dividerIndent: 0.0,
+                  header: activeItem != null ? l10n.coursesListHeaderAll : null,
+                  children: [
+                    for (final item in list)
+                      if (item.state != HeronCourseState.inProgress)
+                        CourseListItem(
+                          id: item.id,
+                          name: item.name,
+                          zones: item.zones,
+                          duration: item.duration,
+                          state: item.state,
+                          liked: item.liked,
+                          imageId: item.imageId,
+                          landmark: item.landmark,
+                        ),
+                  ],
+                ),
               ],
             ),
-          HeronListGroup(
-            labelIndent: 10.0,
-            dividerIndent: 0.0,
-            header: l10n.coursesListHeaderAll,
-            children: [
-              for (final item in list)
-                if (item.status != HeronCourseStatusType.now) item,
-            ],
-          ),
-        ],
-      ),
-    );
+          )
+        : const HeronEmpty();
   }
 }
 
-class CourseListLiked extends StatelessWidget {
-  final List<CourseListItem> list;
+class CourseListGeneral extends StatelessWidget {
+  final List<HeronCourseSummary> list;
 
-  const CourseListLiked(this.list, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 40.0),
-      child: Column(
-        children: [
-          HeronListGroup(
-            labelIndent: 10.0,
-            dividerIndent: 0.0,
-            children: [
-              for (final item in list)
-                if (item.status == HeronCourseStatusType.liked) item,
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CourseListDone extends StatelessWidget {
-  final List<CourseListItem> list;
-
-  const CourseListDone(this.list, {super.key});
+  const CourseListGeneral(this.list, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 40.0),
-      child: Column(
-        children: [
-          HeronListGroup(
-            labelIndent: 10.0,
-            dividerIndent: 0.0,
-            children: [
-              for (final item in list)
-                if (item.status == HeronCourseStatusType.done) item,
-            ],
-          ),
-        ],
-      ),
-    );
+    return list.isNotEmpty
+        ? SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 40.0),
+            child: Column(
+              children: [
+                HeronListGroup(
+                  labelIndent: 10.0,
+                  dividerIndent: 0.0,
+                  children: [
+                    for (final item in list)
+                      CourseListItem(
+                        id: item.id,
+                        name: item.name,
+                        zones: item.zones,
+                        duration: item.duration,
+                        state: item.state,
+                        liked: item.liked,
+                        imageId: item.imageId,
+                        landmark: item.landmark,
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        : const HeronEmpty();
   }
 }
 
 class CourseListItem extends HeronListItem {
   final String id;
-  final String title;
-  final List<HeronPlaceZoneType> zones;
+  final String name;
+  final List<HeronZoneSummary> zones;
   final HeronCourseDurationType duration;
-  final HeronCourseStatusType? status;
-  final String imageSrc;
+  final HeronCourseState? state;
+  final bool liked;
+  final String imageId;
   final String landmark;
 
   const CourseListItem({
     super.key,
     required this.id,
-    required this.title,
+    required this.name,
     required this.zones,
     required this.duration,
-    this.status,
-    required this.imageSrc,
+    this.state,
+    required this.liked,
+    required this.imageId,
     required this.landmark,
   });
 
@@ -138,7 +152,7 @@ class CourseListItem extends HeronListItem {
                 child: Container(
                   color: colorScheme.surfaceContainerHigh,
                   child: Image.network(
-                    imageSrc,
+                    "$kThumbBaseURL/$imageId",
                     width: 100.0,
                     height: 100.0,
                     fit: BoxFit.cover,
@@ -154,16 +168,14 @@ class CourseListItem extends HeronListItem {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        title,
+                        name,
                         style: textTheme.titleMedium,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 2.0),
                       Text(
-                        zones
-                            .map((zone) => zone.getDisplayText(l10n))
-                            .join(', '),
+                        zones.map((zone) => zone.name).join(', '),
                         style: textTheme.bodyMedium!
                             .copyWith(color: colorScheme.outline),
                         maxLines: 1,
@@ -178,7 +190,15 @@ class CourseListItem extends HeronListItem {
                               duration.getDisplayText(l10n).toUpperCase(),
                             ),
                           ),
-                          if (status != null) HeronCourseStatusLabel(status!),
+                          if (state == HeronCourseState.inProgress)
+                            const HeronCourseStatusLabel(
+                                HeronCourseStateLabelType.now)
+                          else if (liked)
+                            const HeronCourseStatusLabel(
+                                HeronCourseStateLabelType.liked)
+                          else if (state == HeronCourseState.done)
+                            const HeronCourseStatusLabel(
+                                HeronCourseStateLabelType.done)
                         ],
                       ),
                     ],

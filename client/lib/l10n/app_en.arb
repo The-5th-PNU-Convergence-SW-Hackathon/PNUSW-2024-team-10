@@ -9,6 +9,8 @@
   "commonConfirmationApply": "Apply",
   "commonConfirmationCancel": "Cancel",
 
+  "commonEmpty": "Empty",
+
   "commonFilterTitle": "Filter",
   "commonFilterApply": "Apply",
   "commonFilterReset": "Reset",

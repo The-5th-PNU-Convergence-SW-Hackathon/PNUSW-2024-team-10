@@ -50,7 +50,7 @@ class CourseDetailsScreen extends StatelessWidget {
                     title: "Art & Healing Tour",
                     imageSrc:
                         "https://futuristic-budget-d22.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F92a61ff1-a5fc-4b36-9910-db0f8218224b%2F15af9355-e1dd-4c9f-ada2-eb1bbfc0cbb2%2Fimage.png?table=block&id=0cc6f44d-9b59-4869-99ae-014466b1e80e&spaceId=92a61ff1-a5fc-4b36-9910-db0f8218224b&width=2000&userId=&cache=v2",
-                    duration: HeronCourseDurationType.oneDay,
+                    duration: HeronCourseDurationType.oneday,
                     zones: [
                       HeronPlaceZoneType.downtown,
                     ],

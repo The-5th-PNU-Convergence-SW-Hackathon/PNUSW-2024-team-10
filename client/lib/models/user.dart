@@ -11,7 +11,5 @@ Future<UserInfo?> apiUserGet(BuildContext? context) async {
   }
 
   final data = response.data;
-  final headers = response.headers.map;
-
-  return parseUserInfo(data, headers);
+  return UserInfo.fromJson(data);
 }

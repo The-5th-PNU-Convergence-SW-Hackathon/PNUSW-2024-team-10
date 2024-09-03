@@ -1,4 +1,8 @@
-const kApiBaseURL = "http://localhost:3000/api";
+const kBaseURL = "http://localhost:3000";
+
+const kApiBaseURL = "$kBaseURL/api";
+const kImageBaseURL = "$kBaseURL/images";
+const kThumbBaseURL = "$kBaseURL/thumbs";
 
 const kAccessTokenKey = "accessToken";
 const kRefreshTokenKey = "refreshToken";

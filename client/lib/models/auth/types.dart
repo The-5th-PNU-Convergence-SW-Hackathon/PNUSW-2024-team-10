@@ -1,11 +1,12 @@
 import 'package:heron/constants/request.dart';
+import 'package:heron/models/types.dart';
 
 enum UserProvider {
   google,
   apple,
 }
 
-class UserInfo {
+class UserInfo implements HeronResponse {
   final String id;
   final String name;
   final String email;
@@ -19,36 +20,27 @@ class UserInfo {
     this.avatar,
     this.providers = const [],
   });
-}
 
-UserInfo? parseUserInfo(dynamic data, dynamic headers) {
-  if (data is! Map<String, dynamic> ||
-      headers is! Map<String, List<String>> ||
-      data['id'] is! String ||
-      data['name'] is! String ||
-      data['email'] is! String ||
-      data['avatar'] is! String? ||
-      data['providers'] is! List) {
-    return null;
+  @override
+  factory UserInfo.fromJson(Map<String, dynamic> data) {
+    return UserInfo(
+        id: data['id'],
+        name: data['name'],
+        email: data['email'],
+        avatar: data['avatar'],
+        providers: data['providers']
+            .map<UserProvider?>((provider) {
+              try {
+                return UserProvider.values.firstWhere(
+                  (element) => element.toString() == provider,
+                );
+              } catch (e) {
+                return null;
+              }
+            })
+            .whereType<UserProvider>()
+            .toList());
   }
-
-  return UserInfo(
-      id: data['id'],
-      name: data['name'],
-      email: data['email'],
-      avatar: data['avatar'],
-      providers: data['providers']
-          .map<UserProvider?>((provider) {
-            try {
-              return UserProvider.values.firstWhere(
-                (element) => element.toString() == provider,
-              );
-            } catch (e) {
-              return null;
-            }
-          })
-          .whereType<UserProvider>()
-          .toList());
 }
 
 class Tokens {
@@ -59,17 +51,11 @@ class Tokens {
     required this.refreshToken,
     required this.accessToken,
   });
-}
 
-Tokens? parseTokens(dynamic data, dynamic headers) {
-  if (data is! String ||
-      headers is! Map<String, List<String>> ||
-      headers[kHeaderNewToken]?.first is! String) {
-    return null;
+  factory Tokens.parse(String data, Map<String, List<String>> headers) {
+    return Tokens(
+      refreshToken: headers[kHeaderNewToken]!.first,
+      accessToken: data,
+    );
   }
-
-  return Tokens(
-    refreshToken: headers[kHeaderNewToken]!.first,
-    accessToken: data,
-  );
 }

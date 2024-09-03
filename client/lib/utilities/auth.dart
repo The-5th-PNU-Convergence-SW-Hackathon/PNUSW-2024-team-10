@@ -66,10 +66,12 @@ Future<Dio> getDioWithAccessToken(BuildContext? context) async {
 Future<Dio> getDio() async {
   final deviceId = await getDeviceId();
   final packageInfo = await PackageInfo.fromPlatform();
-
   final preferences = await SharedPreferences.getInstance();
+
   final language = preferences.getString(kPrefLanguage);
-  final locale = language != null ? Locale(language) : null;
+  final locale = language != null
+      ? Locale(language)
+      : WidgetsBinding.instance.platformDispatcher.locale;
 
   final options = BaseOptions(
     baseUrl: kApiBaseURL,
@@ -78,7 +80,7 @@ Future<Dio> getDio() async {
       'User-Agent':
           '${packageInfo.appName}/${packageInfo.version} (${packageInfo.packageName}; ${Platform.operatingSystem})',
       'Device-Id': deviceId,
-      'Accept-Language': locale?.languageCode
+      'Accept-Language': locale.languageCode
     },
   );
 

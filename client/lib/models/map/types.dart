@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:heron/models/types.dart';
 import 'package:heron/widgets/theme/label.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hugeicons/hugeicons.dart';
+
+class HeronZoneSummary extends HeronResponse {
+  final String id;
+  final String name;
+
+  const HeronZoneSummary({
+    required this.id,
+    required this.name,
+  });
+
+  @override
+  factory HeronZoneSummary.fromJson(Map<String, dynamic> data) {
+    return HeronZoneSummary(
+      id: data['id'],
+      name: data['name'],
+    );
+  }
+}
 
 enum HeronPlaceType {
   tourSpot,
@@ -14,6 +33,7 @@ enum HeronPlaceZoneType {
   gijang(HugeIcons.strokeRoundedMoonLanding);
 
   const HeronPlaceZoneType(this.icon);
+
   final IconData icon;
 
   String getDisplayText(AppLocalizations l10n) {
@@ -27,7 +47,6 @@ enum HeronPlaceZoneType {
     }
   }
 }
-
 
 enum HeronFoodType {
   vegan(HeronLabelColorType.green, HugeIcons.strokeRoundedVegetarianFood),
