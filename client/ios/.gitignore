@@ -28,6 +28,8 @@ Flutter/Secrets.xcconfig
 ServiceDefinitions.json
 Runner/GeneratedPluginRegistrant.*
 
+**/PIFCache/*
+
 # google services
 Runner/GoogleService-Info.plist
 

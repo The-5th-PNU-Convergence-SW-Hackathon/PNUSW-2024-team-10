@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heron/constants/map.dart';
 import 'package:heron/constants/request.dart';
 import 'package:heron/models/map/types.dart';
 import 'package:heron/screens/map/widgets/inherit.dart';
@@ -85,7 +86,8 @@ class MapFloatingItem extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final cameraPosition = MapContext.of(context).cameraPosition;
 
-    final isVisible = cameraPosition.zoom > 10.0 && cameraPosition.zoom < 10.75;
+    final isVisible = cameraPosition.zoom > kMapZoomPlaceholderThreshold &&
+        cameraPosition.zoom < kMapZoomMarkerThreshold;
 
     return AnimatedOpacity(
       opacity: isVisible ? 1.0 : 0.0,

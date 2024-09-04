@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: _selectedIndex,
         children: const [
+          MapScreen(),
           CoursesScreen(),
           InfoScreen(),
           MoreScreen(),
@@ -38,6 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         items: [
+          HeronNavigationBarItem(
+            icon: HugeIcons.strokeRoundedMapsLocation01,
+            label: l10n.navigationLabelMap,
+          ),
           HeronNavigationBarItem(
             icon: HugeIcons.strokeRoundedRoute01,
             label: l10n.navigationLabelCourses,

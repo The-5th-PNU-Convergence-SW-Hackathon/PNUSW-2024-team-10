@@ -79,8 +79,7 @@ class MoreUserProfileHasUser extends StatelessWidget {
         ),
         HeronListGroup(
           children: [
-            HeronNavigationListItem(
-              onPressed: () async {},
+            HeronListItem(
               child: Row(
                 children: [
                   Text(l10n.moreProfileCompletedCourses),
