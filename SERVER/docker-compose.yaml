@@ -1,0 +1,24 @@
+version: '1'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: heron-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: PNUHack
+      MYSQL_USER: heron
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+
+  spring-boot-app:
+    image: heron-server:1.0
+    container_name: heron-springboot
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/PNUHack
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234

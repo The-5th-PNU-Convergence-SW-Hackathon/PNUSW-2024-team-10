@@ -1,0 +1,69 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-logging:3.3.1'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java:8.0.33'
+
+	//Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// Google Auth
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	// Swagger
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+
+	// Excel
+	implementation 'org.apache.poi:poi:5.2.3'
+	implementation 'org.apache.poi:poi-ooxml:5.2.3'
+	//Builder
+	compileOnly 'org.projectlombok:lombok:1.18.28'
+	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+	//s3 image
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.300'
+
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	//jwt
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+
+}
+jar {
+	enabled = false
+}
+tasks.named('test') {
+	useJUnitPlatform()
+}
