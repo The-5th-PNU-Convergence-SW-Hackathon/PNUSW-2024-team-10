@@ -1,4 +1,4 @@
-const kBaseURL = "http://localhost:3000";
+const kBaseURL = "https://heron.insd.dev";
 
 const kApiBaseURL = "$kBaseURL/api";
 const kImageBaseURL = "$kBaseURL/images";

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:heron/utilities/auth.dart';
 import 'package:heron/widgets/button/icon.dart';
+import 'package:heron/widgets/signin/signin.dart';
 import 'package:heron/widgets/theme/icon.dart';
+import 'package:heron/widgets/theme/prefs.dart';
 
 class HeronLikeButton extends StatelessWidget {
   final bool isLiked;
@@ -22,7 +24,13 @@ class HeronLikeButton extends StatelessWidget {
         isLiked ? HeronIcons.heartFilled : HeronIcons.heartStroke,
         color: isLiked ? colorScheme.primary : colorScheme.outline,
       ),
-      onPressed: () => onPressed(!isLiked),
+      onPressed: () {
+        if (getUser(context) != null) {
+          onPressed(!isLiked);
+        } else {
+          showSignInSheet(context: context);
+        }
+      },
     );
   }
 }

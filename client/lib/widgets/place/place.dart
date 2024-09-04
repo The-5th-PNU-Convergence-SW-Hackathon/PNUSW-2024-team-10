@@ -12,7 +12,7 @@ import 'package:heron/widgets/other/sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:snapping_bottom_sheet/snapping_bottom_sheet.dart';
 
-void showHeronPlaceSheet(BuildContext context, String id) async {
+Future<void> showHeronPlaceSheet(BuildContext context, String id) async {
   final dio = await getDioWithAccessToken(context);
   final res = await dio.get('/places/$id');
 
@@ -49,7 +49,7 @@ void showHeronPlaceSheet(BuildContext context, String id) async {
       ?.map((value) => HeronFoodType.fromDBString(value as String))
       .toList();
 
-  showSnappingBottomSheet(
+  return showSnappingBottomSheet(
     context,
     builder: (context) => SnappingBottomSheetDialog(
       snapSpec: const SnapSpec(

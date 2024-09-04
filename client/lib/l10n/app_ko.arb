@@ -26,6 +26,8 @@
   "mapTourSpot": "관광지",
   "mapFood": "식당",
 
+  "mapResetCamera": "시점 초기화",
+
   "placeFilterTheme": "관광지 테마",
   "placeFilterRestaurantType": "식당 종류",
 

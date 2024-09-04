@@ -1,29 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:heron/screens/map/widgets/inherit.dart';
+
+const kInitialCameraPosition = CameraPosition(
+  target: LatLng(35.1957614692006, 129.1059409081936),
+  zoom: 10.7,
+  bearing: 0,
+);
 
 class HeronGoogleMap extends StatefulWidget {
-  const HeronGoogleMap({super.key});
+  final void Function(CameraPosition) onCameraMove;
+  final void Function(GoogleMapController) onMapCreated;
+
+  const HeronGoogleMap({
+    super.key,
+    required this.onCameraMove,
+    required this.onMapCreated,
+  });
 
   @override
   State<HeronGoogleMap> createState() => _HeronGoogleMapState();
 }
 
 class _HeronGoogleMapState extends State<HeronGoogleMap> {
+  bool _isLoading = true;
+
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top,
+    final info = MapContext.of(context);
+
+    return AnimatedOpacity(
+      opacity: _isLoading ? 0.0 : 1.0,
+      duration: const Duration(milliseconds: 300),
+      child: GoogleMap(
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top,
+        ),
+        initialCameraPosition: kInitialCameraPosition,
+        mapType: MapType.normal,
+        style: Theme.of(context).brightness == Brightness.dark
+            ? _darkMapStyle
+            : _mapStyle,
+        onMapCreated: (controller) {
+          setState(() {
+            _isLoading = false;
+          });
+          widget.onMapCreated(controller);
+        },
+        onCameraMove: (position) {
+          widget.onCameraMove(position);
+        },
+        compassEnabled: false,
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        markers: info.markers,
       ),
-      initialCameraPosition: CameraPosition(
-          target: LatLng(35.143112, 129.041412), zoom: 10.6, bearing: 34),
-      mapType: MapType.normal,
-      style: Theme.of(context).brightness == Brightness.dark
-          ? _darkMapStyle
-          : _mapStyle,
-      compassEnabled: false,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
     );
   }
 }

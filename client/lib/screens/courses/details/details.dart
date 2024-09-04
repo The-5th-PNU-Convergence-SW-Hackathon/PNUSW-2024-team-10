@@ -5,7 +5,6 @@ import 'package:heron/models/courses/types.dart';
 import 'package:heron/screens/courses/details/widgets/bottom.dart';
 import 'package:heron/screens/courses/details/widgets/header.dart';
 import 'package:heron/screens/courses/details/widgets/list.dart';
-import 'package:heron/screens/courses/details/widgets/map.dart';
 import 'package:heron/screens/courses/details/widgets/modifier.dart';
 import 'package:heron/utilities/auth.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
@@ -203,16 +202,16 @@ class _CourseDetailsBodyState extends State<_CourseDetailsBody> {
                             ),
                         ],
                       ),
-                      HeronListGroup(
-                        header: l10n.coursesDetailMap,
-                        labelIndent: 10.0,
-                        children: const [
-                          HeronListItem(
-                            padding: EdgeInsets.zero,
-                            child: CourseDetailsMap(),
-                          ),
-                        ],
-                      ),
+                      // HeronListGroup(
+                      //   header: l10n.coursesDetailMap,
+                      //   labelIndent: 10.0,
+                      //   children: const [
+                      //     HeronListItem(
+                      //       padding: EdgeInsets.zero,
+                      //       child: CourseDetailsMap(),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

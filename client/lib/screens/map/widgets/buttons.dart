@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:heron/screens/map/widgets/filter.dart';
+import 'package:heron/screens/map/widgets/googlemap.dart';
+import 'package:heron/screens/map/widgets/inherit.dart';
+import 'package:heron/widgets/button/button.dart';
 import 'package:heron/widgets/chip/chip.dart';
 import 'package:heron/widgets/theme/icon.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MapFilterOverlay extends StatelessWidget {
-  const MapFilterOverlay({super.key});
+class MapFilterButtons extends StatelessWidget {
+  const MapFilterButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
     final topMargin = MediaQuery.of(context).padding.top;
     final l10n = AppLocalizations.of(context)!;
+    final controller = MapContext.of(context).controller;
 
     return Positioned(
       top: topMargin + 16.0,
@@ -58,14 +63,22 @@ class MapFilterOverlay extends StatelessWidget {
           Row(
             children: [
               const Spacer(),
-              HeronFilterChip(
-                selected: false,
-                iconSize: 24.0,
-                onSelect: (selected) {},
-                icon: HeronIcons.heartStroke,
+              HeronButton(
+                onPressed: () {
+                  controller?.animateCamera(
+                    CameraUpdate.newCameraPosition(kInitialCameraPosition),
+                  );
+                },
+                variant: HeronButtonVariant.outline,
+                child: Text(l10n.mapResetCamera),
+              ),
+              const SizedBox(width: 16.0),
+              HeronButton(
+                variant: HeronButtonVariant.outline,
+                onPressed: () {},
                 height: 50.0,
-                cornerRadius: 8.0,
                 padding: const EdgeInsets.symmetric(horizontal: 13.0),
+                child: const Icon(HeronIcons.heartStroke),
               ),
             ],
           ),

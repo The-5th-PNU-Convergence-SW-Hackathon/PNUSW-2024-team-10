@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:heron/models/types.dart';
 import 'package:heron/widgets/theme/label.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -191,5 +192,62 @@ enum HeronTourSpotTheme {
       default:
         throw Exception('Unknown HeronTourSpotTheme: $value');
     }
+  }
+}
+
+class HeronZone extends HeronResponse {
+  final String id;
+  final String name;
+  final String imageId;
+  final LatLng latLng;
+  final List<HeronPlaceLatLng> places;
+
+  const HeronZone({
+    required this.id,
+    required this.name,
+    required this.imageId,
+    required this.latLng,
+    required this.places,
+  });
+
+  factory HeronZone.fromJson(Map<String, dynamic> data) {
+    final places = (data['places'] as List<dynamic>)
+        .map(
+            (value) => HeronPlaceLatLng.fromJson(value as Map<String, dynamic>))
+        .toList();
+
+    return HeronZone(
+      id: data['id'],
+      name: data['name'],
+      imageId: data['imageId'],
+      latLng: LatLng(data['latitude'], data['longitude']),
+      places: places,
+    );
+  }
+}
+
+class HeronPlaceLatLng extends HeronResponse {
+  final String id;
+  final String name;
+  final LatLng latLng;
+  final bool liked;
+  final HeronPlaceType type;
+
+  const HeronPlaceLatLng({
+    required this.id,
+    required this.name,
+    required this.latLng,
+    required this.liked,
+    required this.type,
+  });
+
+  factory HeronPlaceLatLng.fromJson(Map<String, dynamic> data) {
+    return HeronPlaceLatLng(
+      id: data['id'],
+      name: data['name'],
+      latLng: LatLng(data['latitude'], data['longitude']),
+      liked: data['liked'] ?? false,
+      type: HeronPlaceType.fromDBString(data['type']),
+    );
   }
 }

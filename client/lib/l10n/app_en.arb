@@ -26,6 +26,8 @@
   "mapTourSpot": "Tour Spot",
   "mapFood": "Food",
 
+  "mapResetCamera": "Reset Camera",
+
   "placeFilterTheme": "Tour Spot Theme",
   "placeFilterRestaurantType": "Restaurant Type",
 
