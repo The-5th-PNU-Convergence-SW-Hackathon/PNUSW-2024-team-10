@@ -4,7 +4,7 @@ import 'package:heron/models/courses/types.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HeronCourseStatusLabel extends HeronLabel {
-  final HeronCourseStatusType type;
+  final HeronCourseStateLabelType type;
 
   const HeronCourseStatusLabel(this.type, {super.key});
 

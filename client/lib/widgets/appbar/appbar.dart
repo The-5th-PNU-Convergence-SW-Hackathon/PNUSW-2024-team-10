@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:heron/widgets/appbar/status.dart';
 import 'package:heron/widgets/button/icon.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.disableBorder = false,
     this.scrollOffset = 0.0,
     this.scrollOffsetStart = 0.0,
-    this.scrollOffsetEnd = 6.0,
+    this.scrollOffsetEnd = 10.0,
   });
 
   @override

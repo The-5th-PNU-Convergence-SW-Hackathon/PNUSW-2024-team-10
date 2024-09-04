@@ -34,22 +34,25 @@ class HeronPlaceSheetDataTable extends StatelessWidget {
               );
             },
             child: _HeronPlaceSheetDataItem(
-              icon: HugeIcons.strokeRoundedLocation01,
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(text: "$address  ", style: textTheme.bodyLarge),
-                    WidgetSpan(
-                      child: HugeIcon(
-                        icon: HugeIcons.strokeRoundedCopy01,
-                        color: colorScheme.outline,
-                        size: 14.0,
-                      ),
+                icon: HugeIcons.strokeRoundedLocation01,
+                child: SizedBox(
+                  child: RichText(
+                    textAlign: TextAlign.start,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: "$address  ", style: textTheme.bodyLarge),
+                        WidgetSpan(
+                          child: HugeIcon(
+                            icon: HugeIcons.strokeRoundedCopy01,
+                            color: colorScheme.outline,
+                            size: 14.0,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ),
+                  ),
+                )),
           ),
           if (menu != null) ...[
             const SizedBox(height: 4.0),
@@ -79,10 +82,15 @@ class _HeronPlaceSheetDataItem extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HugeIcon(icon: icon, color: colorScheme.primary, size: 18.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 2.0),
+          child: HugeIcon(icon: icon, color: colorScheme.primary, size: 18.0),
+        ),
         const SizedBox(width: 8.0),
-        DefaultTextStyle(style: textTheme.bodyLarge!, child: child),
+        DefaultTextStyle(
+            style: textTheme.bodyLarge!, child: Expanded(child: child)),
       ],
     );
   }

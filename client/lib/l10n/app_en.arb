@@ -5,8 +5,13 @@
   "commonConfirmationYes": "Yes",
   "commonConfirmationNo": "No",
 
+  "commonConfirmationConfirm": "Confirm",
   "commonConfirmationApply": "Apply",
   "commonConfirmationCancel": "Cancel",
+  "commonConfirmationStart": "Start",
+  "commonConfirmationAbort": "Abort",
+
+  "commonEmpty": "Empty",
 
   "commonFilterTitle": "Filter",
   "commonFilterApply": "Apply",
@@ -21,6 +26,8 @@
   "mapTourSpot": "Tour Spot",
   "mapFood": "Food",
 
+  "mapResetCamera": "Reset Camera",
+
   "placeFilterTheme": "Tour Spot Theme",
   "placeFilterRestaurantType": "Restaurant Type",
 
@@ -29,6 +36,7 @@
   "placeZoneGijang": "Gijang",
 
   "placeMore": "more",
+  "placeImageAuthor": "Photo by",
   "placeCopiedMessage": "Copied to clipboard!",
 
   "tourSpotThemeHistory": "History",
@@ -42,10 +50,18 @@
   "foodMichelin": "Michelin Guide",
   "foodSingle": "Single Seat",
 
+  "cuisineCountryKorean": "Korean",
+  "cuisineCountryChinese": "Chinese",
+  "cuisineCountryJapanese": "Japanese",
+  "cuisineCountryWestern": "Western",
+  "cuisineCountryAsian": "Asian",
+  "cuisineCountryFusion": "Fusion",
+  "cuisineCountryEtc": "Other",
+
   "navigationLabelMap": "Map",
   "navigationLabelCourses": "Courses",
   "navigationLabelInfo": "Info",
-  "navigationLabelProfile": "Profile",
+  "navigationLabelMore": "More",
 
   "coursesTabAll": "All",
   "coursesTabLiked": "Liked",
@@ -72,48 +88,52 @@
   "coursesDetailSuggestTime": "Suggested Time",
   "coursesDetailMission": "Mission",
   "coursesDetailStart": "Start This Course",
+  "coursesDetailStartMessage": "Are you ready to start this course?",
+  "coursesDetailStartAlreadyExists": "another course in progress",
+  "coursesDetailProgress": "Progress",
+  "coursesDetailAbort": "Abort",
+  "coursesDetailAbortMessage": "Are you sure you want to abort this course? You cannot restart an aborted course.",
 
-  "profileCourseCount": "{count} courses finished",
-  "@profileCourseCount": {
-    "description": "The number of courses the user has completed",
+  "infoArticleTitle": "Article",
+
+  "moreProfileSignIn": "Sign In",
+  "moreProfileCompletedCourses": "Completed Courses",
+  "moreProfileGallery": "Gallery",
+
+  "morePreferencesLabel": "Preferences",
+  "morePreferencesTheme": "Theme",
+  "morePreferencesThemeItem": "{theme, select, light{Light} dark{Dark} other{System Default}}",
+  "@morePreferencesThemeItem": {
+    "description": "A theme option in the theme selection list",
     "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
+      "theme": {
+        "type": "String"
       }
     }
   },
-  "profileMissionCount": "{count} missions completed",
-  "@profileMissionCount": {
-    "description": "The number of missions the user has completed",
+
+  "morePreferencesLanguage": "Language",
+
+  "morePreferencesLanguageItem": "{language, select, en{English} ko{Korean (한국어)} other{System Default}}",
+  "@morePreferencesLanguageItem": {
+    "description": "A language option in the language selection list",
     "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
+      "language": {
+          "type": "String"
       }
     }
   },
-  "profileGalleryHeader": "Gallery",
-  "profileGalleryEmpty": "Take a photo while progressing through the course!",
 
-  "settingsTitle": "Settings",
+  "moreAppInfoLabel": "Information",
+  "moreAppInfoVersion": "Version",
+  "moreAppInfoTerms": "Terms of Service",
+  "moreAppInfoPrivacy": "Privacy Policy",
+  "moreAppInfoLicenses": "Open Source Licenses",
+  "moreAppInfoRepository": "View GitHub Repository",
 
-  "settingsUserLabel": "User",
-  "settingsUserSignOut": "Sign Out",
-  "settingsUserSignOutConfirmation": "Are you sure you want to sign out?",
-  "settingsUserSignOutSuccess": "Signed out successfully",
-  "settingsUserTheme": "Change Theme",
-  "settingsUserThemeSystem": "System Default",
-  "settingsUserThemeLight": "Light",
-  "settingsUserThemeDark": "Dark",
-  "settingsUserLanguage": "Change Language",
-  "settingsUserLanguageSystem": "System Default",
-  "settingsUserLanguageEnglish": "English",
-  "settingsUserLanguageKorean": "Korean (한국어)",
+  "moreEtcSignOut": "Sign Out",
+  "moreEtcSignOutMessage": "Are you sure you want to sign out?",
+  "moreEtcSignOutSuccess": "Signed out successfully",
+  "moreEtcDeleteAccount": "Delete Account"
 
-  "settingsAppInfoLabel": "Information",
-  "settingsAppInfoVersion": "Version",
-  "settingsAppInfoTermsAndPolicy": "Terms and Policy",
-  "settingsAppInfoLicenses": "Open Source Licenses",
-  "settingsAppInfoRepository": "View GitHub Repository"
 }

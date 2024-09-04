@@ -1,4 +1,6 @@
 import 'package:heron/constants/preferences.dart';
+import 'package:heron/models/auth/types.dart';
+import 'package:heron/models/user.dart';
 import 'package:heron/widgets/theme/label.dart';
 import 'package:heron/utilities/ripple.dart';
 import 'package:flutter/material.dart';
@@ -6,18 +8,19 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:heron/widgets/theme/prefs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const _kDefaultLocale = null;
 const _kDefaultThemeMode = ThemeMode.system;
 
 class HeronApp extends StatefulWidget {
   final Locale? locale;
   final ThemeMode? themeMode;
+  final UserInfo? user;
   final RouterConfig<Object> routerConfig;
 
   const HeronApp({
     super.key,
     this.locale,
     this.themeMode,
+    this.user,
     required this.routerConfig,
   });
 
@@ -28,18 +31,20 @@ class HeronApp extends StatefulWidget {
 class _HeronAppState extends State<HeronApp> {
   late Locale? locale;
   late ThemeMode themeMode;
+  late UserInfo? user;
 
   @override
   void initState() {
     super.initState();
 
-    locale = widget.locale ?? _kDefaultLocale;
+    locale = widget.locale;
     themeMode = widget.themeMode ?? _kDefaultThemeMode;
+    user = widget.user;
   }
 
   void setLocale(Locale? locale) async {
     setState(() {
-      this.locale = locale ?? _kDefaultLocale;
+      this.locale = locale;
     });
     final prefs = await SharedPreferences.getInstance();
     if (locale != null) {
@@ -61,13 +66,30 @@ class _HeronAppState extends State<HeronApp> {
     }
   }
 
+  Future<void> updateUser() async {
+    final userInfo = await apiUserGet(context);
+
+    setState(() {
+      user = userInfo;
+    });
+  }
+
+  void clearUser() {
+    setState(() {
+      user = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return HeronPreferences(
       locale: locale,
       themeMode: themeMode,
+      user: user,
       setLocale: setLocale,
       setThemeMode: setThemeMode,
+      updateUser: updateUser,
+      clearUser: clearUser,
       child: MaterialApp.router(
         title: 'Heron',
         themeMode: themeMode,
@@ -129,7 +151,7 @@ class MaterialTheme {
       onSurface: Color(0xff181c23),
       onSurfaceVariant: Color(0xff414755),
       outline: Color(0xff717786),
-      outlineVariant: Color(0x29414755),
+      outlineVariant: Color(0xffe3e4e6),
       shadow: Color(0xff000000),
       scrim: Color(0xff000000),
       inverseSurface: Color(0xff2d3039),
@@ -184,7 +206,7 @@ class MaterialTheme {
       onSurface: Color(0xffe0e2ed),
       onSurfaceVariant: Color(0xffc1c6d7),
       outline: Color(0xff8b90a0),
-      outlineVariant: Color(0x1ac1c6d7),
+      outlineVariant: Color(0xff282b33),
       shadow: Color(0xff000000),
       scrim: Color(0xff000000),
       inverseSurface: Color(0xffe0e2ed),

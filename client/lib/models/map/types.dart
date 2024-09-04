@@ -1,11 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:heron/models/types.dart';
 import 'package:heron/widgets/theme/label.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+class HeronZoneSummary extends HeronResponse {
+  final String id;
+  final String name;
+
+  const HeronZoneSummary({
+    required this.id,
+    required this.name,
+  });
+
+  @override
+  factory HeronZoneSummary.fromJson(Map<String, dynamic> data) {
+    return HeronZoneSummary(
+      id: data['id'],
+      name: data['name'],
+    );
+  }
+}
+
 enum HeronPlaceType {
   tourSpot,
-  food,
+  food;
+
+  factory HeronPlaceType.fromDBString(String value) {
+    switch (value) {
+      case 'TOUR_SPOT':
+        return HeronPlaceType.tourSpot;
+      case 'RESTAURANT':
+        return HeronPlaceType.food;
+      default:
+        throw Exception('Unknown HeronPlaceType: $value');
+    }
+  }
 }
 
 enum HeronPlaceZoneType {
@@ -14,6 +45,7 @@ enum HeronPlaceZoneType {
   gijang(HugeIcons.strokeRoundedMoonLanding);
 
   const HeronPlaceZoneType(this.icon);
+
   final IconData icon;
 
   String getDisplayText(AppLocalizations l10n) {
@@ -24,6 +56,56 @@ enum HeronPlaceZoneType {
         return l10n.placeZoneDowntown;
       case HeronPlaceZoneType.gijang:
         return l10n.placeZoneGijang;
+    }
+  }
+}
+
+enum HeronCuisineCountry {
+  korean,
+  chinese,
+  japanese,
+  western,
+  asian,
+  fusion,
+  etc;
+
+  String getDisplayText(AppLocalizations l10n) {
+    switch (this) {
+      case HeronCuisineCountry.korean:
+        return l10n.cuisineCountryKorean;
+      case HeronCuisineCountry.chinese:
+        return l10n.cuisineCountryChinese;
+      case HeronCuisineCountry.japanese:
+        return l10n.cuisineCountryJapanese;
+      case HeronCuisineCountry.western:
+        return l10n.cuisineCountryWestern;
+      case HeronCuisineCountry.asian:
+        return l10n.cuisineCountryAsian;
+      case HeronCuisineCountry.fusion:
+        return l10n.cuisineCountryFusion;
+      case HeronCuisineCountry.etc:
+        return l10n.cuisineCountryEtc;
+    }
+  }
+
+  factory HeronCuisineCountry.fromDBString(String value) {
+    switch (value) {
+      case 'KOREAN':
+        return HeronCuisineCountry.korean;
+      case 'CHINESE':
+        return HeronCuisineCountry.chinese;
+      case 'JAPANESE':
+        return HeronCuisineCountry.japanese;
+      case 'WESTERN':
+        return HeronCuisineCountry.western;
+      case 'ASIAN':
+        return HeronCuisineCountry.asian;
+      case 'FUSION':
+        return HeronCuisineCountry.fusion;
+      case 'ETC':
+        return HeronCuisineCountry.etc;
+      default:
+        throw Exception('Unknown HeronCuisineCountry: $value');
     }
   }
 }
@@ -54,29 +136,118 @@ enum HeronFoodType {
         return l10n.foodSingle;
     }
   }
+
+  factory HeronFoodType.fromDBString(String value) {
+    switch (value) {
+      case 'VEGAN':
+        return HeronFoodType.vegan;
+      case 'BLUERIBBON':
+        return HeronFoodType.blueribbon;
+      case 'HALAL':
+        return HeronFoodType.halal;
+      case 'MICHELIN':
+        return HeronFoodType.michelin;
+      case 'SINGLE':
+        return HeronFoodType.single;
+      default:
+        throw Exception('Unknown HeronFoodType: $value');
+    }
+  }
 }
 
-enum HeronTourSpotThemeType {
+enum HeronTourSpotTheme {
   history(HeronLabelColorType.yellow, HugeIcons.strokeRoundedClock03),
   nature(HeronLabelColorType.green, HugeIcons.strokeRoundedNaturalFood),
   culture(HeronLabelColorType.blue, HugeIcons.strokeRoundedMapsGlobal01),
   shopping(HeronLabelColorType.red, HugeIcons.strokeRoundedShoppingBasket01);
 
-  const HeronTourSpotThemeType(this.color, this.icon);
+  const HeronTourSpotTheme(this.color, this.icon);
 
   final HeronLabelColorType color;
   final IconData icon;
 
   String getDisplayText(AppLocalizations l10n) {
     switch (this) {
-      case HeronTourSpotThemeType.history:
+      case HeronTourSpotTheme.history:
         return l10n.tourSpotThemeHistory;
-      case HeronTourSpotThemeType.nature:
+      case HeronTourSpotTheme.nature:
         return l10n.tourSpotThemeNature;
-      case HeronTourSpotThemeType.culture:
+      case HeronTourSpotTheme.culture:
         return l10n.tourSpotThemeCulture;
-      case HeronTourSpotThemeType.shopping:
+      case HeronTourSpotTheme.shopping:
         return l10n.tourSpotThemeShopping;
     }
+  }
+
+  static HeronTourSpotTheme fromDBString(String value) {
+    switch (value) {
+      case 'HISTORY':
+        return HeronTourSpotTheme.history;
+      case 'NATURE':
+        return HeronTourSpotTheme.nature;
+      case 'CULTURE':
+        return HeronTourSpotTheme.culture;
+      case 'SHOPPING':
+        return HeronTourSpotTheme.shopping;
+      default:
+        throw Exception('Unknown HeronTourSpotTheme: $value');
+    }
+  }
+}
+
+class HeronZone extends HeronResponse {
+  final String id;
+  final String name;
+  final String imageId;
+  final LatLng latLng;
+  final List<HeronPlaceLatLng> places;
+
+  const HeronZone({
+    required this.id,
+    required this.name,
+    required this.imageId,
+    required this.latLng,
+    required this.places,
+  });
+
+  factory HeronZone.fromJson(Map<String, dynamic> data) {
+    final places = (data['places'] as List<dynamic>)
+        .map(
+            (value) => HeronPlaceLatLng.fromJson(value as Map<String, dynamic>))
+        .toList();
+
+    return HeronZone(
+      id: data['id'],
+      name: data['name'],
+      imageId: data['imageId'],
+      latLng: LatLng(data['latitude'], data['longitude']),
+      places: places,
+    );
+  }
+}
+
+class HeronPlaceLatLng extends HeronResponse {
+  final String id;
+  final String name;
+  final LatLng latLng;
+  final bool liked;
+  final HeronPlaceType type;
+
+  const HeronPlaceLatLng({
+    required this.id,
+    required this.name,
+    required this.latLng,
+    required this.liked,
+    required this.type,
+  });
+
+  factory HeronPlaceLatLng.fromJson(Map<String, dynamic> data) {
+    return HeronPlaceLatLng(
+      id: data['id'],
+      name: data['name'],
+      latLng: LatLng(data['latitude'], data['longitude']),
+      liked: data['liked'] ?? false,
+      type: HeronPlaceType.fromDBString(data['type']),
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'package:heron/widgets/button/button.dart';
 import 'package:heron/widgets/button/text.dart';
 import 'package:heron/widgets/chip/chip.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:heron/widgets/sheet/handle.dart';
+import 'package:heron/widgets/other/sheet.dart';
 import 'package:snapping_bottom_sheet/snapping_bottom_sheet.dart';
 
 void showFilterSheet(

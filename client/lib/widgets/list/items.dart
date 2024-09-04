@@ -40,11 +40,16 @@ class HeronPressableListItem extends HeronListItem {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onPressed,
         splashFactory: HeronRipple.splashFactory,
+        splashColor: colorScheme.outlineVariant.withOpacity(0.5),
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
         child: super.build(context),
       ),
     );
@@ -68,9 +73,8 @@ class HeronNavigationListItem extends HeronPressableListItem {
       onPressed: onPressed,
       child: Row(
         children: [
-          child ?? const SizedBox(),
-          const Spacer(),
-          const SizedBox(width: 16.0),
+          Expanded(child: child ?? const SizedBox()),
+          const SizedBox(width: 8.0),
           HugeIcon(
             icon: HugeIcons.strokeRoundedArrowRight01,
             color: colorScheme.outline,
