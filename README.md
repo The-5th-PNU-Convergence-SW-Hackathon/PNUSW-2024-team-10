@@ -834,7 +834,7 @@ yarn dev
 
 ## 5. 소개 및 시연 영상
 
-
+![영상](https://file.notion.so/f/f/92a61ff1-a5fc-4b36-9910-db0f8218224b/f0c25f82-d3e6-41b2-b2e5-c565ca55b6a2/KakaoTalk_20240904_154928187.mp4?table=block&id=1cb48ca6-0d55-46a0-9944-f814aadac51b&spaceId=92a61ff1-a5fc-4b36-9910-db0f8218224b&expirationTimestamp=1725523200000&signature=fh1syPEscxpsXX52GUQm4IaOx0YQ3280LgRG7kx5Qo4&downloadName=KakaoTalk_20240904_154928187.mp4)
 
 ## 6. 팀 소개
     
