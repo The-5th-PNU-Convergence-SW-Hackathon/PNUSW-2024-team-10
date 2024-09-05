@@ -834,11 +834,7 @@ yarn dev
 
 ## 5. 소개 및 시연 영상
 
-
-
-https://github.com/user-attachments/assets/abefe536-c686-45ae-b86b-a2cb7f9b2b0e
-
-
+[![YouTube](http://i.ytimg.com/vi/fgFu48xAqzw/hqdefault.jpg)](https://www.youtube.com/watch?v=fgFu48xAqzw)
 
 ## 6. 팀 소개
     
