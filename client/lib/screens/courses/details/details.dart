@@ -9,7 +9,6 @@ import 'package:heron/screens/courses/details/widgets/modifier.dart';
 import 'package:heron/utilities/auth.dart';
 import 'package:heron/widgets/appbar/appbar.dart';
 import 'package:heron/widgets/button/like.dart';
-import 'package:heron/widgets/list/items.dart';
 import 'package:heron/widgets/list/list.dart';
 import 'package:heron/widgets/other/future.dart';
 import 'package:heron/widgets/scroll/scroll.dart';

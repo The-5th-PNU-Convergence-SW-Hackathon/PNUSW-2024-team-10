@@ -6,6 +6,7 @@ import 'package:heron/models/user.dart';
 import 'package:heron/screens/courses/details/details.dart';
 import 'package:heron/screens/error/error.dart';
 import 'package:heron/screens/home.dart';
+import 'package:heron/screens/image/image.dart';
 import 'package:heron/screens/info/details/details.dart';
 import 'package:flutter/material.dart';
 import 'package:heron/screens/more/policy/policy.dart';

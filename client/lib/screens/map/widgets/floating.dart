@@ -15,19 +15,46 @@ class MapFloatings extends StatefulWidget {
 }
 
 class _MapFloatingsState extends State<MapFloatings> {
+  List<Offset> _offsets = [];
+
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _calculateScreenCoordinates();
+  }
+
+  void _calculateScreenCoordinates() async {
     final mapContext = MapContext.of(context);
-    final media = MediaQuery.of(context);
     final controller = mapContext.controller;
+    final media = MediaQuery.of(context);
 
     final screenSize = Size(
       media.size.width,
       media.size.height - media.padding.top,
     );
 
+    if (controller != null) {
+      final futures = widget.zones.map((zone) async {
+        final screenCoordinate =
+            await controller.getScreenCoordinate(zone.latLng);
+        return Offset(
+          screenCoordinate.x - screenSize.width / 2,
+          screenCoordinate.y - screenSize.height / 2,
+        );
+      }).toList();
+
+      final results = await Future.wait(futures);
+
+      setState(() {
+        _offsets = results.toList();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Positioned(
-      top: media.padding.top,
+      top: MediaQuery.of(context).padding.top,
       left: 0,
       right: 0,
       bottom: 0,
@@ -36,30 +63,12 @@ class _MapFloatingsState extends State<MapFloatings> {
         children: [
           Stack(
             children: [
-              for (final zone in widget.zones)
-                FutureBuilder(
-                  future: controller?.getScreenCoordinate(zone.latLng),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final screenCoordinate = snapshot.data;
-
-                      if (screenCoordinate != null) {
-                        final offset = Offset(
-                          screenCoordinate.x - screenSize.width / 2,
-                          screenCoordinate.y - screenSize.height / 2,
-                        );
-
-                        return MapFloatingItem(
-                          offset: offset,
-                          imageId: zone.imageId,
-                          name: zone.name,
-                        );
-                      }
-                    }
-
-                    return const SizedBox();
-                  },
-                )
+              for (int i = 0; i < _offsets.length; i++)
+                MapFloatingItem(
+                  offset: _offsets[i],
+                  imageId: widget.zones[i].imageId,
+                  name: widget.zones[i].name,
+                ),
             ],
           ),
         ],
@@ -93,7 +102,7 @@ class MapFloatingItem extends StatelessWidget {
       opacity: isVisible ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 180),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 40),
+        duration: const Duration(milliseconds: 24),
         curve: Curves.easeInOut,
         transform: Matrix4.translationValues(offset.dx, offset.dy, 0),
         width: 120.0,

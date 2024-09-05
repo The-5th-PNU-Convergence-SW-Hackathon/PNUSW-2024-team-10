@@ -3,6 +3,8 @@ import 'package:heron/widgets/button/icon.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+const kHeronAppBarHeight = 56.0;
+
 class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool forceElevation;
   final Widget? title;
@@ -10,6 +12,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final bool hasBackButton;
   final PreferredSizeWidget? bottom;
+  final Icon backButtonIcon;
 
   // elevation
   final bool largeTitle;
@@ -27,6 +30,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.hasBackButton = true,
     this.bottom,
+    this.backButtonIcon = const Icon(HugeIcons.strokeRoundedArrowLeft01),
     this.largeTitle = false,
     this.hideTitleOnTop = false,
     this.disableBorder = false,
@@ -80,7 +84,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    height: 56.0,
+                    height: kHeronAppBarHeight,
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,8 +92,9 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
                         if (leading != null && !hasPop) leading!,
                         if (hasPop)
                           HeronIconButton(
-                            icon: const Icon(
-                              HugeIcons.strokeRoundedArrowLeft01,
+                            icon: Icon(
+                              backButtonIcon.icon,
+                              color: backButtonIcon.color,
                               size: 32.0,
                             ),
                             onPressed: () => Navigator.of(context).pop(),
@@ -126,7 +131,7 @@ class HeronAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    double height = 56.0;
+    double height = kHeronAppBarHeight;
     if (bottom != null) {
       height += bottom!.preferredSize.height;
     }

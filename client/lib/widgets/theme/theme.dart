@@ -91,6 +91,7 @@ class _HeronAppState extends State<HeronApp> {
       updateUser: updateUser,
       clearUser: clearUser,
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         title: 'Heron',
         themeMode: themeMode,
         // InheritedWidget에서 가져온 themeMode 사용

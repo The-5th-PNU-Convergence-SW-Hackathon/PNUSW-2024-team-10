@@ -200,20 +200,29 @@ class HeronZone extends HeronResponse {
   final String name;
   final String imageId;
   final LatLng latLng;
-  final List<HeronPlaceLatLng> places;
+  final List<HeronTourSpotLatLng> tourSpots;
+  final List<HeronRestaurantLatLng> restaurants;
 
   const HeronZone({
     required this.id,
     required this.name,
     required this.imageId,
     required this.latLng,
-    required this.places,
+    this.tourSpots = const [],
+    this.restaurants = const [],
   });
 
   factory HeronZone.fromJson(Map<String, dynamic> data) {
-    final places = (data['places'] as List<dynamic>)
-        .map(
-            (value) => HeronPlaceLatLng.fromJson(value as Map<String, dynamic>))
+    final tourSpots = data['places']
+        .where((place) => place['type'] == 'TOUR_SPOT')
+        .map<HeronTourSpotLatLng>(
+            (place) => HeronTourSpotLatLng.fromJson(place))
+        .toList();
+
+    final restaurants = data['places']
+        .where((place) => place['type'] == 'RESTAURANT')
+        .map<HeronRestaurantLatLng>(
+            (place) => HeronRestaurantLatLng.fromJson(place))
         .toList();
 
     return HeronZone(
@@ -221,33 +230,74 @@ class HeronZone extends HeronResponse {
       name: data['name'],
       imageId: data['imageId'],
       latLng: LatLng(data['latitude'], data['longitude']),
-      places: places,
+      tourSpots: tourSpots,
+      restaurants: restaurants,
     );
   }
 }
 
-class HeronPlaceLatLng extends HeronResponse {
+class HeronTourSpotLatLng extends HeronResponse {
+  final String id;
+  final String name;
+  final LatLng latLng;
+  final bool liked;
+  final HeronPlaceType type;
+  final List<HeronTourSpotTheme> themes;
+
+  const HeronTourSpotLatLng({
+    required this.id,
+    required this.name,
+    required this.latLng,
+    required this.liked,
+    required this.type,
+    this.themes = const [],
+  });
+
+  factory HeronTourSpotLatLng.fromJson(Map<String, dynamic> data) {
+    return HeronTourSpotLatLng(
+      id: data['id'],
+      name: data['name'],
+      latLng: LatLng(data['latitude'], data['longitude']),
+      liked: data['liked'] ?? false,
+      type: HeronPlaceType.fromDBString(data['type']),
+      themes: (data['themes'] as List<dynamic>)
+          .map((value) => HeronTourSpotTheme.fromDBString(value as String))
+          .toList(),
+    );
+  }
+}
+
+class HeronRestaurantLatLng extends HeronResponse {
   final String id;
   final String name;
   final LatLng latLng;
   final bool liked;
   final HeronPlaceType type;
 
-  const HeronPlaceLatLng({
+  final HeronCuisineCountry cuisine;
+  final List<HeronFoodType> foodTypes;
+
+  const HeronRestaurantLatLng({
     required this.id,
     required this.name,
     required this.latLng,
     required this.liked,
     required this.type,
+    required this.cuisine,
+    this.foodTypes = const [],
   });
 
-  factory HeronPlaceLatLng.fromJson(Map<String, dynamic> data) {
-    return HeronPlaceLatLng(
+  factory HeronRestaurantLatLng.fromJson(Map<String, dynamic> data) {
+    return HeronRestaurantLatLng(
       id: data['id'],
       name: data['name'],
       latLng: LatLng(data['latitude'], data['longitude']),
       liked: data['liked'] ?? false,
       type: HeronPlaceType.fromDBString(data['type']),
+      cuisine: HeronCuisineCountry.fromDBString(data['cuisine']),
+      foodTypes: (data['foodTypes'] as List<dynamic>)
+          .map((value) => HeronFoodType.fromDBString(value as String))
+          .toList(),
     );
   }
 }

@@ -134,6 +134,8 @@
   "moreEtcSignOut": "Sign Out",
   "moreEtcSignOutMessage": "Are you sure you want to sign out?",
   "moreEtcSignOutSuccess": "Signed out successfully",
-  "moreEtcDeleteAccount": "Delete Account"
+  "moreEtcDeleteAccount": "Delete Account",
 
+  "imageScreenTitle": "Image",
+  "imageSaved": "Image saved to gallery"
 }

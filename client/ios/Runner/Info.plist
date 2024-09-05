@@ -41,6 +41,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to upload image to server, and we can confirm mission completion with the image.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to upload image to server, and we can confirm mission completion with the image.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -58,9 +62,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>Used to upload image to server, and we can confirm mission completion with the image.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Used to upload image to server, and we can confirm mission completion with the image.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used to save images uploaded to server by user.</string>
 </dict>
 </plist>

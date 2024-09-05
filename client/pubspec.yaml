@@ -57,6 +57,8 @@ dependencies:
   image_picker: ^1.1.2
   google_maps_flutter: ^2.9.0
   label_marker: ^1.0.1
+  photo_view: ^0.15.0
+  gal: ^2.3.0
 
 dev_dependencies:
   flutter_test:

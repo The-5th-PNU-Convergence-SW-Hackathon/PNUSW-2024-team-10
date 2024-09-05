@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:heron/constants/request.dart';
 import 'package:heron/models/courses/types.dart';
 import 'package:heron/screens/courses/details/widgets/modifier.dart';
+import 'package:heron/screens/image/image.dart';
 import 'package:heron/widgets/button/button.dart';
 import 'package:heron/widgets/list/items.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -201,17 +202,28 @@ class _MissionCompleteButtonState extends State<_MissionCompleteButton> {
                 ),
               ),
             ),
-            AnimatedOpacity(
-              opacity: _completion != null ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 180),
-              child: _completion != null
-                  ? HeronFadeInImage(
-                      "$kThumbBaseURL/$_completion",
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(4.0),
-                      ),
-                    )
-                  : const SizedBox(),
+            GestureDetector(
+              onTap: () {
+                if (_completion != null) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ImageScreen(_completion!),
+                    ),
+                  );
+                }
+              },
+              child: AnimatedOpacity(
+                opacity: _completion != null ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 180),
+                child: _completion != null
+                    ? HeronFadeInImage(
+                        "$kThumbBaseURL/$_completion",
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(4.0),
+                        ),
+                      )
+                    : const SizedBox(),
+              ),
             ),
           ],
         ),

@@ -117,5 +117,8 @@
   "moreEtcSignOut": "로그아웃",
   "moreEtcSignOutMessage": "정말로 로그아웃하시겠습니까?",
   "moreEtcSignOutSuccess": "로그아웃되었습니다.",
-  "moreEtcDeleteAccount": "계정 삭제"
+  "moreEtcDeleteAccount": "계정 삭제",
+
+  "imageScreenTitle": "이미지",
+  "imageSaved": "사진이 갤러리에 저장되었습니다."
 }
