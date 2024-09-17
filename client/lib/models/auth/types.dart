@@ -12,6 +12,7 @@ class UserInfo implements HeronResponse {
   final String email;
   final String? avatar;
   final List<UserProvider> providers;
+  final int completedCoursesCount;
 
   const UserInfo({
     required this.id,
@@ -19,27 +20,30 @@ class UserInfo implements HeronResponse {
     required this.email,
     this.avatar,
     this.providers = const [],
+    this.completedCoursesCount = 0,
   });
 
   @override
   factory UserInfo.fromJson(Map<String, dynamic> data) {
     return UserInfo(
-        id: data['id'],
-        name: data['name'],
-        email: data['email'],
-        avatar: data['avatar'],
-        providers: data['providers']
-            .map<UserProvider?>((provider) {
-              try {
-                return UserProvider.values.firstWhere(
-                  (element) => element.toString() == provider,
-                );
-              } catch (e) {
-                return null;
-              }
-            })
-            .whereType<UserProvider>()
-            .toList());
+      id: data['id'],
+      name: data['name'],
+      email: data['email'],
+      avatar: data['avatar'],
+      providers: data['providers']
+          .map<UserProvider?>((provider) {
+            try {
+              return UserProvider.values.firstWhere(
+                (element) => element.toString() == provider,
+              );
+            } catch (e) {
+              return null;
+            }
+          })
+          .whereType<UserProvider>()
+          .toList(),
+      completedCoursesCount: data['completedCoursesCount'],
+    );
   }
 }
 

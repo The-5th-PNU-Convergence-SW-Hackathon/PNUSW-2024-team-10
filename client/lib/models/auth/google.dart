@@ -1,13 +1,13 @@
 import 'package:heron/models/auth/types.dart';
 import 'package:heron/utilities/auth.dart';
 
-Future<bool> apiAuthGoogleGet(String idToken) async {
+Future<bool> apiAuthGoogleGet(String accessToken) async {
   final dio = await getDio();
 
   final response = await dio.post(
     "/auth/google",
     data: {
-      'idToken': idToken,
+      'accessToken': accessToken,
     },
   );
 

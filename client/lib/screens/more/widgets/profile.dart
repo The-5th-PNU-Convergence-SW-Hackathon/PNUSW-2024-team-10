@@ -85,7 +85,7 @@ class MoreUserProfileHasUser extends StatelessWidget {
                   Text(l10n.moreProfileCompletedCourses),
                   const Spacer(),
                   Text(
-                    "3",
+                    user.completedCoursesCount.toString(),
                     style: TextStyle(
                       color: colorScheme.outline,
                     ),

@@ -19,7 +19,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final googleSignIn = GoogleSignIn(scopes: ["email", "profile"]);
+    final googleSignIn = GoogleSignIn(scopes: ["email", "profile", "openid"]);
 
     return HeronButton(
       isLoading: _isLoading,
@@ -31,9 +31,10 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
         final result = await googleSignIn.signIn();
         if (result != null) {
-          final idToken = (await result.authentication).idToken;
-          if (idToken != null) {
-            final result = await apiAuthGoogleGet(idToken);
+          print((await result.authentication).idToken);
+          final accessToken = (await result.authentication).accessToken;
+          if (accessToken != null) {
+            final result = await apiAuthGoogleGet(accessToken);
             if (result == false) {
               await googleSignIn.signOut();
             }
